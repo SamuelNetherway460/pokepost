@@ -14,17 +14,18 @@ class CreatePostsTable extends Migration
     public function up()
     {
         Schema::create('posts', function (Blueprint $table) {
-            $table->bigIncrements('post_id');
-            $table->char('title', 40);
-            $table->string('content');
-            $table->dateTime('date_posted');
+            $table->id();
+            $table->mediumText('title');
+            $table->longText('content');
+            $table->date('date_posted');
+            $table->time('time_posted');
             $table->timestamps();
 
             // Foreign Keys:
             $table->bigInteger('user_id')->unsigned();
 
             // References:
-            $table->foreign('user_id')->references('user_id')->on('users')
+            $table->foreign('user_id')->references('id')->on('users')
                 ->onDelete('cascade')->onUpdate('cascade');
         });
     }
