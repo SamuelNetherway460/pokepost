@@ -14,9 +14,10 @@ class CreateCommentsTable extends Migration
     public function up()
     {
         Schema::create('comments', function (Blueprint $table) {
-            $table->bigIncrements('comment_id');
-            $table->string('content');
-            $table->dateTime('date_of_comment');
+            $table->id();
+            $table->longText('content');
+            $table->date('date_commented');
+            $table->time('time_commented');
             $table->timestamps();
 
             // Foreign Keys:
@@ -24,9 +25,9 @@ class CreateCommentsTable extends Migration
             $table->bigInteger('post_id')->unsigned();
 
             // References:
-            $table->foreign('user_id')->references('user_id')->on('users')
+            $table->foreign('user_id')->references('id')->on('users')
                 ->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('post_id')->references('post_id')->on('posts')
+            $table->foreign('post_id')->references('id')->on('posts')
                 ->onDelete('cascade')->onUpdate('cascade');
         });
     }
