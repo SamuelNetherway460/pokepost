@@ -14,6 +14,7 @@ class CommentTableSeeder extends Seeder
     {
         $comment1 = new Comment;
         $comment1->content = "Yes, there great!";
+        $comment1->image = "";
         $comment1->date_commented = "2020-11-01";
         $comment1->time_commented = "17:55:44";
         $comment1->user_id = 2;
