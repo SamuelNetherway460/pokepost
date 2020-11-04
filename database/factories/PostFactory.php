@@ -9,6 +9,7 @@ $factory->define(Post::class, function (Faker $faker) {
     return [
         'title' => $faker->realText(50),
         'content' => $faker->realText(300),
+        'image' => $faker->imageURL(),
         'date_posted' => $faker->date('Y-m-d', 'now'),
         'time_posted' => $faker->time('H:i:s', 'now'),
         'user_id'=>App\User::inRandomOrder()->first()->id,
