@@ -18,8 +18,6 @@ class CreatePostsTable extends Migration
             $table->mediumText('title');
             $table->longText('content');
             $table->string('image');
-            $table->date('date_posted');
-            $table->time('time_posted');
             $table->timestamps();
 
             // Foreign Keys:
