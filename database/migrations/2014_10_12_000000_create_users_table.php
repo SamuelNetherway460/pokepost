@@ -20,7 +20,6 @@ class CreateUsersTable extends Migration
             $table->string('lastname');
             $table->string('profile_image');
             $table->string('cover_image');
-            // Profile Picture
             $table->string('username');
             $table->string('phone_number');
             $table->string('email')->unique();
