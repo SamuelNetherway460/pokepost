@@ -16,6 +16,22 @@ class CreateProfilesTable extends Migration
         Schema::create('profiles', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->string('title');
+            $table->string('firstname');
+            $table->string('lastname');
+            $table->string('profile_image');
+            $table->string('cover_image');
+            $table->string('username');
+            $table->string('phone_number');
+            $table->string('address');
+            $table->string('favorite_pokemon');
+
+            // Foreign Keys:
+            $table->bigInteger('user_id')->unsigned();
+
+            // References:
+            $table->foreign('user_id')->references('id')->on('users')
+                ->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

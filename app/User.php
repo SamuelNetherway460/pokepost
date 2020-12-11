@@ -43,9 +43,15 @@ class User extends Authenticatable
         return $this->hasMany('App\Post');
     }
 
-    // Returns all of a users comments on all posts
+    // Returns all of a user's comments on all posts
     public function comments()
     {
         return $this->hasMany('App\Comment');
+    }
+
+    // Returns the user's profile
+    public function profile()
+    {
+        return $this->hasOne('\App\Profile');
     }
 }
