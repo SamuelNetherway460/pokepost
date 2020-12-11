@@ -17,4 +17,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+/**
+ * View all posts.
+ */
 Route::get('posts', 'PostController@index');
+
+/**
+ * View a particular post.
+ */
+Route::get('posts/{id}', 'PostController@show');
