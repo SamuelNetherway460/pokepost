@@ -6,6 +6,6 @@
     <ul>
         <li>Title: {{$post->title}}</li>
         <li>Content: {{$post->content}}</li>
-        <li>Image URL: {{$post->image}}</li>
+        <li>Image URL: <a href="{{$post->image}}">Post Image</a></li>
     </ul>
 @endsection
