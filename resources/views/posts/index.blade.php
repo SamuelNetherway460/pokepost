@@ -6,7 +6,8 @@
     <p>All Posts:</p>
     <ul>
         @foreach ($posts as $post)
-            <li><a href="{{ route('posts.show', $post) }}">{{ $post->title }}</a></li>
+            <li><a href="{{ route('posts.show', $post) }}">{{ !empty($post->user->profile) ? $post->user->profile->firstname:'' }}</a></li>
         @endforeach
     </ul>
+    {{ $posts->links() }}
 @endsection
