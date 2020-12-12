@@ -9,7 +9,7 @@
             value="{{ old('title') }}"></p>
         <p>Content: <input type="text" name="content"
             value="{{ old('content') }}"></p>
-        <p>Image: <input type="image" name="image"
+        <p>Image: <input type="url" name="image"
             value="{{ old('image') }}"></p>
         <input type="submit" value="Submit">
         <a href="{{ route('posts.index') }}">Cancel</a>

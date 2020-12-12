@@ -39,9 +39,18 @@ class PostController extends Controller
         $validatedData = $request->validate([
             'title' => 'required|max:100',
             'content' => 'required|string',
-            'image' => 'nullable|image',
+            'image' => 'nullable|url',
         ]);
-        return "Passed Validation";
+
+        $post = new Post;
+        $post->user_id = 1; //TODO - Change to be the current user logged in
+        $post->title = $validatedData['title'];
+        $post->content = $validatedData['content'];
+        $post->image = $validatedData['image'];
+        $post->save();
+
+        session()->flash('message', 'Posted!');
+        return redirect()->route('posts.index');
     }
 
     /**
