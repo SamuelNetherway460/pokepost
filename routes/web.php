@@ -23,6 +23,16 @@ Route::get('/', function () {
 Route::get('posts', 'PostController@index')->name('posts.index');
 
 /**
+ * Display the view to create a new post.
+ */
+Route::get('posts/create', 'PostController@create')->name('posts.create');
+
+/**
+ * Store the post in the database.
+ */
+Route::post('posts', 'PostController@store')->name('posts.store');
+
+/**
  * View a particular post.
  */
 Route::get('posts/{post}', 'PostController@show')->name('posts.show');
