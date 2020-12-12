@@ -45,3 +45,10 @@ Route::delete('posts/{post}', 'PostController@destroy')->name('posts.destroy');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+<<<<<<< HEAD
+=======
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+>>>>>>> 01a3c823b6d0be7abab0a0336a23c301fe60220c
