@@ -41,3 +41,7 @@ Route::get('posts/{post}', 'PostController@show')->name('posts.show');
  * Delete a post.
  */
 Route::delete('posts/{post}', 'PostController@destroy')->name('posts.destroy');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
