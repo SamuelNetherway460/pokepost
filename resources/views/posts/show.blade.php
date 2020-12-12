@@ -12,6 +12,13 @@
             <li>Changed: {{$post->updated_at}}</li>
         @endif
     </ul>
+
+    <form method="POST" action="{{ route('posts.destroy', ['id' => $post->id])}}">
+        @csrf
+        @method('DELETE')
+        <button type="submit">Delete</button>
+    </form>
+
     <h2>Comments:</h2>
     @php $comments = $post->comments @endphp
     @foreach ($comments as $comment)
