@@ -25,18 +25,23 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view('posts.create');
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Validate and store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'title' => 'required|max:100',
+            'content' => 'required|string',
+            'image' => 'nullable|image',
+        ]);
+        return "Passed Validation";
     }
 
     /**
