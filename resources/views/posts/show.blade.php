@@ -15,7 +15,7 @@
 
     <a href="{{ route('posts.index') }}">Back</a>
 
-    <form method="POST" action="{{ route('posts.destroy', ['id' => $post->id])}}">
+    <form method="POST" action="{{ route('posts.destroy', $post)}}">
         @csrf
         @method('DELETE')
         <button type="submit">Delete</button>

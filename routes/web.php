@@ -40,4 +40,4 @@ Route::get('posts/{post}', 'PostController@show')->name('posts.show');
 /**
  * Delete a post.
  */
-Route::delete('posts/{id}', 'PostController@destroy')->name('posts.destroy');
+Route::delete('posts/{post}', 'PostController@destroy')->name('posts.destroy');
