@@ -36,3 +36,8 @@ Route::post('posts', 'PostController@store')->name('posts.store');
  * View a particular post.
  */
 Route::get('posts/{post}', 'PostController@show')->name('posts.show');
+
+/**
+ * Delete a post.
+ */
+Route::delete('posts/{id}', 'PostController@destroy')->name('posts.destroy');
