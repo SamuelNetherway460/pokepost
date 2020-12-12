@@ -20,9 +20,9 @@ Route::get('/', function () {
 /**
  * View all posts.
  */
-Route::get('posts', 'PostController@index');
+Route::get('posts', 'PostController@index')->name('posts.index');
 
 /**
  * View a particular post.
  */
-Route::get('posts/{id}', 'PostController@show');
+Route::get('posts/{post}', 'PostController@show')->name('posts.show');
