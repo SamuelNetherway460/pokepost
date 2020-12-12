@@ -37,7 +37,5 @@ class ProfileTableSeeder extends Seeder
         $profile2->address = "74-78 Avon St, Bristol, United Kingdom";
         $profile2->favorite_pokemon = "Weedle";
         $profile2->save();
-
-        factory(App\Profile::class, 20)->create();
     }
 }

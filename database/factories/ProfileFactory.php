@@ -16,6 +16,5 @@ $factory->define(Profile::class, function (Faker $faker) {
         'phone_number' => $faker->phoneNumber,
         'address' => $faker->address,
         'favorite_pokemon' => $faker->firstName,
-        'user_id'=>App\User::inRandomOrder()->first()->id,
     ];
 });
