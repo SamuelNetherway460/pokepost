@@ -13,6 +13,8 @@
         @endif
     </ul>
 
+    <a href="{{ route('posts.index') }}">Back</a>
+
     <form method="POST" action="{{ route('posts.destroy', ['id' => $post->id])}}">
         @csrf
         @method('DELETE')
