@@ -11,20 +11,11 @@
     },
     "devDependencies": {
         "axios": "^0.19",
-<<<<<<< HEAD
-        "cross-env": "^7.0.3",
-=======
-        "bootstrap": "^4.0.0",
         "cross-env": "^7.0",
-        "jquery": "^3.2",
->>>>>>> 01a3c823b6d0be7abab0a0336a23c301fe60220c
         "laravel-mix": "^5.0.1",
         "lodash": "^4.17.13",
-        "popper.js": "^1.12",
-        "resolve-url-loader": "^2.3.1",
+        "resolve-url-loader": "^3.1.0",
         "sass": "^1.15.2",
-        "sass-loader": "^8.0.0",
-        "vue": "^2.5.17",
-        "vue-template-compiler": "^2.6.10"
+        "sass-loader": "^8.0.0"
     }
 }
