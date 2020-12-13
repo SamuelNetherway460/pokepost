@@ -96,9 +96,9 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        $firstname = $post->user->profile->firstname;
+        $username = $post->user->name;
         $post->delete();
 
-        return redirect()->route('posts.index')->with('message', $firstname."'".'s post was deleted!');
+        return redirect()->route('posts.index')->with('message', $username."'".'s post was deleted!');
     }
 }

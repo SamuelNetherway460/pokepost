@@ -21,9 +21,7 @@ class CreateProfilesTable extends Migration
             $table->string('lastname');
             $table->string('profile_image');
             $table->string('cover_image');
-            $table->string('username');
             $table->string('phone_number');
-            $table->string('address');
             $table->string('favorite_pokemon');
 
             // Foreign Keys:
