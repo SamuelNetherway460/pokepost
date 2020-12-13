@@ -42,6 +42,12 @@ Route::get('posts/{post}', 'PostController@show')->name('posts.show');
  */
 Route::delete('posts/{post}', 'PostController@destroy')->name('posts.destroy');
 
+/**
+ * Adds all required routes for user authentication.
+ */
 Auth::routes();
 
+/**
+ * Go to home screen.
+ */
 Route::get('/home', 'HomeController@index')->name('home');

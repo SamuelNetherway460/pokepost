@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -43,7 +44,7 @@ class PostController extends Controller
         ]);
 
         $post = new Post;
-        $post->user_id = 1; //TODO - Change to be the current user logged in
+        $post->user_id = Auth::id();
         $post->title = $validatedData['title'];
         $post->content = $validatedData['content'];
         $post->image = $validatedData['image'];
