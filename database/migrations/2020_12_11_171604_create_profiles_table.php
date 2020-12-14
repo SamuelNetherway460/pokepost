@@ -16,7 +16,8 @@ class CreateProfilesTable extends Migration
         Schema::create('profiles', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->morphs('profile');
+            $table->string('profileable_type');
+            $table->integer('profileable_id');
             $table->string('title');
             $table->string('firstname');
             $table->string('lastname');

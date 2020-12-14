@@ -12,6 +12,7 @@ class UserTableSeeder extends Seeder
      */
     public function run()
     {
+        /*
         $user1 = new User;
         $user1->name = "BobPaintings";
         $user1->email = "bobross@gmail.com";
@@ -23,6 +24,7 @@ class UserTableSeeder extends Seeder
         $user2->email = "andyc@outlook.com";
         $user2->password = "Back&Forth112";
         $user2->save();
+        */
 
         factory(App\User::class, 20)->create()->each(function ($user) {
             $user->profile()->save(factory(App\Profile::class)->make());

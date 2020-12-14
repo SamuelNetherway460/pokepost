@@ -12,6 +12,7 @@ class ProfileTableSeeder extends Seeder
      */
     public function run()
     {
+        /*
         $profile1 = new Profile;
         $profile1->user_id = 1;
         $profile1->title = "Mr";
@@ -33,5 +34,6 @@ class ProfileTableSeeder extends Seeder
         $profile2->phone_number = "07744449223";
         $profile2->favorite_pokemon = "Weedle";
         $profile2->save();
+        */
     }
 }

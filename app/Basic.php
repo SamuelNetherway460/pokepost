@@ -8,6 +8,6 @@ class Basic extends Model
 {
     public function profile()
     {
-        return $this->morphOne('App\Profile', 'profileable');
+        return $this->morphOne(Profile::class, 'profileable');
     }
 }
