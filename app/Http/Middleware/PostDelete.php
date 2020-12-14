@@ -7,7 +7,7 @@ use Closure;
 class PostDelete
 {
     /**
-     * Handle an incoming request.
+     * Checks if the current signed in user should be able to delete a post.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Closure  $next
