@@ -1,4 +1,4 @@
-@extends('layouts.appcustom')
+@extends('layouts.app')
 
 @section('title', 'Posts')
 

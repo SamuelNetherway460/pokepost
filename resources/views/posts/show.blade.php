@@ -1,4 +1,4 @@
-@extends('layouts.appcustom')
+@extends('layouts.app')
 
 @section('title', 'Post Detail')
 
@@ -15,11 +15,13 @@
 
     <a href="{{ route('posts.index') }}">Back</a>
 
-    <form method="POST" action="{{ route('posts.destroy', $post)}}">
-        @csrf
-        @method('DELETE')
-        <button type="submit">Delete</button>
-    </form>
+    @if($post->user->id == Auth::user()->id)
+        <form method="POST" action="{{ route('posts.destroy', $post)}}">
+            @csrf
+            @method('DELETE')
+            <button type="submit">Delete</button>
+        </form>
+    @endif
 
     <h2>Comments:</h2>
     @php $comments = $post->comments @endphp
