@@ -5,9 +5,9 @@
 @section('content')
     <h2>{{ $post->user->name }} at {{ $post->created_at }}</h2>
     <ul>
+        <img src="{{ Storage::get('public/post_images/', $post->image_name) }}" style="width: 100%; height: 100%;">
         <li>Title: {{$post->title}}</li>
         <li>Content: {{$post->content}}</li>
-        <li>Image URL: <a href="{{$post->image}}">Post Image</a></li>
         @if ($post->updated_at > $post->created_at)
             <li>Changed: {{$post->updated_at}}</li>
         @endif

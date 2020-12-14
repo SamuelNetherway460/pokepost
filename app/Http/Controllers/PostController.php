@@ -40,14 +40,21 @@ class PostController extends Controller
         $validatedData = $request->validate([
             'title' => 'required|max:100',
             'content' => 'required|string',
-            'image' => 'nullable|url',
         ]);
 
         $post = new Post;
         $post->user_id = Auth::id();
         $post->title = $validatedData['title'];
         $post->content = $validatedData['content'];
-        $post->image = $validatedData['image'];
+
+        if($request->hasFile('file')) {
+            // Only allow jpeg, bmp and png files
+            $request->validate([
+                'image' => 'mimes:jpeg,bmp,png'
+            ]);
+            $request->file->store('post_images', 'public');
+            $post->image_name = $request->file->hashName();
+        }
         $post->save();
 
         session()->flash('message', 'Posted!');
