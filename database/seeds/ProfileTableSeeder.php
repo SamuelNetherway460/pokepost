@@ -12,28 +12,20 @@ class ProfileTableSeeder extends Seeder
      */
     public function run()
     {
-        /*
+        $profileableType = App\Admin::class;
+        $profileable = factory($profileableType)->create();
+
         $profile1 = new Profile;
         $profile1->user_id = 1;
+        $profile1->profileable_type = $profileableType;
+        $profile1->profileable_id = $profileable->id;
         $profile1->title = "Mr";
-        $profile1->firstname = "Bob";
-        $profile1->lastname = "Ross";
+        $profile1->firstname = "Samuel";
+        $profile1->lastname = "Netherway";
         $profile1->profile_image = "https://lorempixel.com/640/480/?58841";
         $profile1->cover_image = "https://lorempixel.com/640/480/?77616";
         $profile1->phone_number = "07704649888";
         $profile1->favorite_pokemon = "Charmander";
         $profile1->save();
-
-        $profile2 = new Profile;
-        $profile2->user_id = 2;
-        $profile2->title = "Dr";
-        $profile2->firstname = "Andrew";
-        $profile2->lastname = "Clarke";
-        $profile2->profile_image = "https://lorempixel.com/640/480/?32496";
-        $profile2->cover_image = "https://lorempixel.com/640/480/?48448";
-        $profile2->phone_number = "07744449223";
-        $profile2->favorite_pokemon = "Weedle";
-        $profile2->save();
-        */
     }
 }

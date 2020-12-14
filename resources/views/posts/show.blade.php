@@ -21,6 +21,18 @@
             @method('DELETE')
             <button type="submit">Delete</button>
         </form>
+    @elseif(Auth::user()->profile->profileable_type == App\Admin::class)
+        <form method="POST" action="{{ route('posts.destroy', $post)}}">
+            @csrf
+            @method('DELETE')
+            <button type="submit">Delete</button>
+        </form>
+    @elseif(Auth::user()->profile->profileable_type == App\Moderator::class)
+        <form method="POST" action="{{ route('posts.destroy', $post)}}">
+            @csrf
+            @method('DELETE')
+            <button type="submit">Delete</button>
+        </form>
     @endif
 
     <h2>Comments:</h2>
