@@ -13,6 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+/**
+ * Welcome screen for registration and login.
+ */
 Route::get('/', function () {
     return view('welcome');
 });
