@@ -15,6 +15,8 @@ class CreateModeratorsTable extends Migration
     {
         Schema::create('moderators', function (Blueprint $table) {
             $table->id();
+            $table->boolean('show_badge');
+            $table->integer('num_posts_edited');
             $table->timestamps();
         });
     }

@@ -15,6 +15,9 @@ class CreateAdminsTable extends Migration
     {
         Schema::create('admins', function (Blueprint $table) {
             $table->id();
+            $table->boolean('show_badge');
+            $table->integer('num_posts_edited');
+            $table->integer('num_posts_deleted');
             $table->timestamps();
         });
     }
