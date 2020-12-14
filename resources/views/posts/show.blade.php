@@ -4,14 +4,12 @@
 
 @section('content')
     <h2>{{ $post->user->name }} at {{ $post->created_at }}</h2>
-    <ul>
-        <img src="{{ Storage::get('public/post_images/', $post->image_name) }}" style="width: 100%; height: 100%;">
-        <li>Title: {{$post->title}}</li>
-        <li>Content: {{$post->content}}</li>
-        @if ($post->updated_at > $post->created_at)
-            <li>Changed: {{$post->updated_at}}</li>
-        @endif
-    </ul>
+    <h2>Title: {{$post->title}}</h2>
+    <img src="{{ route('image.displayImage',$post->image_name) }}" alt="Post Image" title="Post Image">
+    <p>Content: {{$post->content}}</p>
+    @if ($post->updated_at > $post->created_at)
+        <p>Changed: {{$post->updated_at}}</p>
+    @endif
 
     <a href="{{ route('posts.index') }}">Back</a>
 

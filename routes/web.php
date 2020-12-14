@@ -41,6 +41,11 @@ Route::post('posts', 'PostController@store')->name('posts.store')->middleware('a
 Route::get('posts/{post}', 'PostController@show')->name('posts.show')->middleware('auth');
 
 /**
+ * Display an image.
+ */
+Route::get('image/{filename}', 'PostController@displayImage')->name('image.displayImage');
+
+/**
  * Delete a post.
  */
 Route::delete('posts/{post}', 'PostController@destroy')->name('posts.destroy')->middleware('auth');

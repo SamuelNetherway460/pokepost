@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Post;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -107,5 +109,29 @@ class PostController extends Controller
         $post->delete();
 
         return redirect()->route('posts.index')->with('message', $username."'".'s post was deleted!');
+    }
+
+    /**
+     * Displays an image.
+     */
+    public function displayImage($filename)
+    {
+        $exists = Storage::disk('public')->exists('/post_images/'.$filename);
+
+        if($exists) {
+            //get content of image
+            $content = Storage::get('public/post_images/'.$filename);
+
+            //get mime type of image
+            $mime = Storage::mimeType('public/post_images/'.$filename);
+            //prepare response with image content and response code
+            $response = Response::make($content, 200);
+            //set header
+            $response->header("Content-Type", $mime);
+            // return response
+            return $response;
+         } else {
+            abort(404);
+         }
     }
 }
