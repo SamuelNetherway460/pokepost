@@ -5,7 +5,9 @@
 @section('content')
     <h2>{{ $post->user->name }} at {{ $post->created_at }}</h2>
     <h2>Title: {{$post->title}}</h2>
-    <img src="{{ route('image.displayImage',$post->image_name) }}" alt="Post Image" title="Post Image">
+    @if($post->image_name != null)
+        <img src="{{ route('image.displayImage',$post->image_name) }}" alt="Post Image" title="Post Image">
+    @endif
     <p>Content: {{$post->content}}</p>
     @if ($post->updated_at > $post->created_at)
         <p>Changed: {{$post->updated_at}}</p>
