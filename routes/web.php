@@ -20,27 +20,27 @@ Route::get('/', function () {
 /**
  * View all posts.
  */
-Route::get('posts', 'PostController@index')->name('posts.index');
+Route::get('posts', 'PostController@index')->name('posts.index')->middleware('auth');
 
 /**
  * Display the view to create a new post.
  */
-Route::get('posts/create', 'PostController@create')->name('posts.create');
+Route::get('posts/create', 'PostController@create')->name('posts.create')->middleware('auth');
 
 /**
  * Store the post in the database.
  */
-Route::post('posts', 'PostController@store')->name('posts.store');
+Route::post('posts', 'PostController@store')->name('posts.store')->middleware('auth');
 
 /**
  * View a particular post.
  */
-Route::get('posts/{post}', 'PostController@show')->name('posts.show');
+Route::get('posts/{post}', 'PostController@show')->name('posts.show')->middleware('auth');
 
 /**
  * Delete a post.
  */
-Route::delete('posts/{post}', 'PostController@destroy')->name('posts.destroy');
+Route::delete('posts/{post}', 'PostController@destroy')->name('posts.destroy')->middleware('auth');
 
 /**
  * Adds all required routes for user authentication.
