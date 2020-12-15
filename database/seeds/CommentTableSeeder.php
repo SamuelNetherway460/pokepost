@@ -14,7 +14,7 @@ class CommentTableSeeder extends Seeder
     {
         $comment1 = new Comment;
         $comment1->content = "Yes, there great!";
-        $comment1->image = "https://lorempixel.com/640/480/?20983";
+        $comment1->image_name = "https://lorempixel.com/640/480/?20983";
         $comment1->user_id = 2;
         $comment1->post_id = 1;
         $comment1->save();

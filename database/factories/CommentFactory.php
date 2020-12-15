@@ -8,7 +8,7 @@ use Faker\Generator as Faker;
 $factory->define(Comment::class, function (Faker $faker) {
     return [
         'content' => $faker->realText(200),
-        'image' => $faker->imageURL(),
+        'image_name' => $faker->imageURL(),
         'user_id'=>App\User::inRandomOrder()->first()->id,
         'post_id'=>App\Post::inRandomOrder()->first()->id,
     ];

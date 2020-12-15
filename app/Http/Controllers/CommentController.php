@@ -34,6 +34,7 @@ class CommentController extends Controller
     }
 
     //TODO - Change to use the correct post id
+    //TODO - Validate comment
     /**
      * Store a newly created resource in storage.
      *
@@ -43,9 +44,10 @@ class CommentController extends Controller
     public function apiStore(Request $request)
     {
         $tempPostID = Post::all()->first()->id;
+        $tempUserID = Post::all()->first()->user->id;
         $comment = new Comment;
         $comment->content = $request['content'];
-        $comment->user_id = Auth::id();
+        $comment->user_id = $tempUserID;
         $comment->post_id = $tempPostID;
         $comment->save();
         return $comment;
