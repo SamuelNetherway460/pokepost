@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Post;
+use App\Comment;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class CommentController extends Controller
@@ -31,15 +33,22 @@ class CommentController extends Controller
         //
     }
 
+    //TODO - Change to use the correct post id
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \App\Comment $comment
      */
-    public function store(Request $request)
+    public function apiStore(Request $request)
     {
-        //
+        $tempPostID = Post::all()->first()->id;
+        $comment = new Comment;
+        $comment->content = $request['content'];
+        $comment->user_id = Auth::id();
+        $comment->post_id = $tempPostID;
+        $comment->save();
+        return $comment;
     }
 
     /**

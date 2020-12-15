@@ -39,7 +39,7 @@
 
     <div id="app">
         <ul>
-            <li v-for="comment in comments">@{{ comment }}</li>
+            <li v-for="comment in comments">@{{ comment.content }}</li>
         </ul>
     </div>
 
