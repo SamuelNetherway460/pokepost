@@ -10,17 +10,15 @@ use Illuminate\Http\Request;
 class CommentController extends Controller
 {
 
-    //TODO - Change to take the post as a parameter
     /**
      * Gets all the comments on a post.
      *
      * @param   App\Post $post
      * @return  App\Comment
      */
-    public function apiIndex()
+    public function apiIndex(Post $post)
     {
-        $comments = Post::all()->first()->comments;
-        return $comments;
+        return $post->comments;
     }
 
     /**
@@ -33,8 +31,6 @@ class CommentController extends Controller
         //
     }
 
-    //TODO - Change to use the correct post id
-    //TODO - Validate comment
     /**
      * Store a newly created resource in storage.
      *
@@ -43,12 +39,10 @@ class CommentController extends Controller
      */
     public function apiStore(Request $request)
     {
-        $tempPostID = Post::all()->first()->id;
-        $tempUserID = Post::all()->first()->user->id;
         $comment = new Comment;
         $comment->content = $request['content'];
-        $comment->user_id = $tempUserID;
-        $comment->post_id = $tempPostID;
+        $comment->user_id = $request['user_id'];
+        $comment->post_id = $request['post_id'];
         $comment->save();
         return $comment;
     }

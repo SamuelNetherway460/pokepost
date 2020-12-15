@@ -62,9 +62,11 @@
             },
             methods: {
                 createComment: function(){
-                    axios.post("{{ route('api.comments.store') }}",
+                    axios.post("{{ route('api.comments.store', $post) }}",
                     {
-                        content: this.newCommentContent
+                        content: this.newCommentContent,
+                        post_id: {{ $post->id }},
+                        user_id: {{ Auth::user()->id }},
                     })
                     .then(response => {
                         this.comments.push(response.data);
@@ -76,7 +78,7 @@
                 }
             },
             mounted(){
-                axios.get("{{ route('api.comments.index') }}")
+                axios.get("{{ route('api.comments.index', $post) }}")
                 .then( response => {
                     this.comments = response.data;
                 })
@@ -86,4 +88,5 @@
             },
         });
     </script>
+
 @endsection
