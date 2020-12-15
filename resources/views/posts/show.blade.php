@@ -4,14 +4,14 @@
 
 @section('content')
 
-    <h2>{{ $post->user->name }} at {{ $post->created_at }}</h2>
+    <h2>{{ $post->user->name }} {{ $post->created_at->diffForHumans() }}</h2>
     <h2>Title: {{$post->title}}</h2>
     @if($post->image_name != null)
         <img src="{{ route('image.displayImage',$post->image_name) }}" alt="Post Image" title="Post Image">
     @endif
     <p>Content: {{$post->content}}</p>
     @if ($post->updated_at > $post->created_at)
-        <p>Changed: {{$post->updated_at}}</p>
+        <p>Changed: {{$post->updated_at->diffForHumans()}}</p>
     @endif
 
     <a href="{{ route('posts.index') }}">Back</a>
@@ -37,15 +37,13 @@
     @endif
 
     <h2>Comments:</h2>
-    @php $comments = $post->comments @endphp
-    @foreach ($comments as $comment)
-        <b>{{$comment->user->name}} at {{$comment->created_at}}</b>
-        <p>{{$comment->content}}</p>
-    @endforeach
 
     <div id="app">
         <ul>
-            <li v-for="comment in comments">@{{ comment.content }}</li>
+            <li v-for="comment in comments">
+                <p>@{{ comment.id }} at @{{ comment.updated_at }}</p>
+                <p>@{{ comment.content }}</p>
+            </li>
 
             <h2>Write Comment</h2>
             Content: <input type="text" id="input" v-model="newCommentContent">
@@ -70,7 +68,7 @@
                     })
                     .then(response => {
                         this.comments.push(response.data);
-                        this.newCommentContent = ''
+                        this.newCommentContent = '';
                     })
                     .catch(response => {
                         console.log(response);

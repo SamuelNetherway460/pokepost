@@ -91,4 +91,15 @@ class CommentController extends Controller
     {
         //
     }
+
+    /**
+     * Returns the name of the user who posted a comment.
+     *
+     * @param   int $id
+     * @return  String
+     */
+    public function commentUser($id)
+    {
+        return Comment::find($id)->user->name;
+    }
 }

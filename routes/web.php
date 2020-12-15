@@ -46,6 +46,11 @@ Route::get('posts/{post}', 'PostController@show')->name('posts.show')->middlewar
 Route::get('image/{filename}', 'PostController@displayImage')->name('image.displayImage');
 
 /**
+ * Get the user who posted a comment.
+ */
+Route::get('comment/{commentID}', 'CommentController@commentUser')->name('comment.commentUser');
+
+/**
  * Delete a post.
  */
 Route::delete('posts/{post}', 'PostController@destroy')->name('posts.destroy')->middleware('auth');
