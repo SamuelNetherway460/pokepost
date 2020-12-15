@@ -2,18 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use App\Post;
 use Illuminate\Http\Request;
 
 class CommentController extends Controller
 {
+
+    //TODO - Change to take the post as a parameter
     /**
-     * Display a listing of the resource.
+     * Gets all the comments on a post.
      *
-     * @return \Illuminate\Http\Response
+     * @param   App\Post $post
+     * @return  App\Comment
      */
-    public function index()
+    public function apiIndex()
     {
-        //
+        $comments = Post::all()->first()->comments;
+        return $comments;
     }
 
     /**
