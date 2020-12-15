@@ -47,9 +47,18 @@
         var app = new Vue({
             el: '#app',
             data: {
-                comments: ['Comment One', 'Comment Two'],
-            }
-        })
+                comments: [],
+            },
+            mounted(){
+                axios.get("{{ route('api.comments.index') }}")
+                .then( response => {
+                    this.comments = response.data;
+                })
+                .catch(response => {
+                    console.log(response);
+                })
+            },
+        });
     </script>
 
     @php $comments = $post->comments @endphp
