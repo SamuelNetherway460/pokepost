@@ -36,6 +36,22 @@
     @endif
 
     <h2>Comments:</h2>
+
+    <div id="app">
+        <ul>
+            <li v-for="comment in comments">@{{ comment }}</li>
+        </ul>
+    </div>
+
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                comments: ['Comment One', 'Comment Two'],
+            }
+        })
+    </script>
+
     @php $comments = $post->comments @endphp
     @foreach ($comments as $comment)
         <b>{{$comment->user->name}} at {{$comment->created_at}}</b>
