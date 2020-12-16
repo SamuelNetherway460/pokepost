@@ -4,18 +4,38 @@
 
 @section('content')
 
-    <div class="flex justify-center">
-        <div class="w-8/12 bg-white p6 rounded-lg">
-            Posts
+    <main class="container">
+        <div class="my-3 p-3 bg-white rounded shadow-sm">
+            <div class="d-flex justify-content-between border-bottom">
+                <h1 class="pb-2 mb-0">Recent Posts</h1>
+                <div class="p-1">
+                    <button class="btn btn-primary" onClick="{{ route('posts.create') }}">Create Post</button>
+                </div>
+            </div>
+            @foreach ($posts as $post)
+                <div class="d-flex text-muted pt-3">
+                    <img class="me-3 p-2" src="{{ route('image.displayImage',"pokeball.png") }}" alt width="40" height="40">
+                    <div class="pb-3 mb-0 small lh-sm border-bottom w-100">
+                        <div class="d-flex justify-content-between">
+                            <p>
+                                <strong class="text-dark">{{ $post->user->name }}</strong>
+                                <strong>&middot {{ $post->created_at->diffForHumans() }}</strong>
+                            </p>
+                            <p>
+                                <a href="{{ route('posts.show', $post) }}">View</a>
+                            </p>
+                        </div>
+                        <span class="d-block">{{ $post->title }}</span>
+                    </div>
+                </div>
+            @endforeach
         </div>
-    </div>
+        <a href="{{ route('posts.create') }}">Create Post</a>
+    </main>
+@endsection
 
-    <a href="{{ route('posts.create') }}">Create Post</a>
-    <h1>All Posts:</h1>
-    <ul>
-        @foreach ($posts as $post)
-            <li><a href="{{ route('posts.show', $post) }}">{{ $post->user->name }} posted at {{ $post->created_at }}</a></li>
-        @endforeach
-    </ul>
-    {{ $posts->links() }}
+@section('pagination')
+    <div class="d-flex justify-content-center">
+        {{ $posts->links() }}
+    </div>
 @endsection
