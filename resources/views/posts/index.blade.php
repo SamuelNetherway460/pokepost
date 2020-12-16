@@ -8,8 +8,11 @@
         <div class="my-3 p-3 bg-white rounded shadow-sm">
             <div class="d-flex justify-content-between border-bottom">
                 <h1 class="pb-2 mb-0">Recent Posts</h1>
+                @if (session('message'))
+                    <h3 class="text-success">{{ session('message') }}</h3>
+                @endif
                 <div class="p-1">
-                    <button class="btn btn-primary" onClick="{{ route('posts.create') }}">Create Post</button>
+                    <a href="{{ URL::route('posts.create') }}" class="btn btn-primary">Create Post</a>
                 </div>
             </div>
             @foreach ($posts as $post)
@@ -30,7 +33,6 @@
                 </div>
             @endforeach
         </div>
-        <a href="{{ route('posts.create') }}">Create Post</a>
     </main>
 @endsection
 
