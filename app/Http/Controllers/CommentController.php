@@ -18,7 +18,10 @@ class CommentController extends Controller
      */
     public function apiIndex(Post $post)
     {
-        return $post->comments;
+        $comments = Comment::with('user')
+            ->where('comments.post_id', $post->id)
+            ->get();
+        return $comments;
     }
 
     /**
@@ -44,7 +47,9 @@ class CommentController extends Controller
         $comment->user_id = $request['user_id'];
         $comment->post_id = $request['post_id'];
         $comment->save();
-        return $comment;
+
+        $commentWithUser = $comment->load('user');
+        return $commentWithUser;
     }
 
     /**
@@ -90,16 +95,5 @@ class CommentController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    /**
-     * Returns the name of the user who posted a comment.
-     *
-     * @param   int $id
-     * @return  String
-     */
-    public function commentUser($id)
-    {
-        return Comment::find($id)->user->name;
     }
 }

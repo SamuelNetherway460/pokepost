@@ -44,29 +44,25 @@
 
 <main class="container">
     <div class="my-3 p-3 bg-white rounded shadow-sm">
-        <div class="input-group">
-            <input type="text" id="input" v-model="newCommentContent" class="form-control" placeholder="Comment" aria-label="Add Comment" aria-describedby="basic-addon2">
-            <div class="input-group-append">
-              <button @click="createComment" class="btn btn-primary" type="button">Post</button>
-            </div>
-          </div>
-    </div>
-</main>
-
-<main class="container">
-    <div class="my-3 p-3 bg-white rounded shadow-sm">
         <div class="d-flex border-bottom">
             <h2 class="pb-2 mb-0">Comments</h2>
+        </div>
+
+        <div class="input-group mt-3">
+            <input type="text" id="input" v-model="newCommentContent" class="form-control" placeholder="Comment" aria-label="Add Comment" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+                <button @click="createComment" class="btn btn-primary" type="button">Post</button>
+            </div>
         </div>
 
         <div v-for="comment in comments" class="d-flex text-muted pt-3">
             <img class="me-3 p-2" src="{{ route('image.displayImage',"pokeball.png") }}" alt width="40" height="40">
             <div class="pb-3 mb-0 small lh-sm border-bottom w-100">
                 <div class="d-flex justify-content-between">
-                    <p>
-                        <strong class="text-dark">@{{ comment.id }}</strong>
-                        <strong>&middot @{{ comment.updated_at }}</strong>
-                    </p>
+                        <p>
+                            <strong class="text-dark">@{{ comment.user.name }}</strong>
+                            <strong>&middot @{{ comment.updated_at }}</strong>
+                        </p>
                 </div>
                 <span class="d-block">@{{ comment.content }}</span>
             </div>
