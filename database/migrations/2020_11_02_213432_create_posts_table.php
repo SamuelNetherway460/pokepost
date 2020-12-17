@@ -17,7 +17,7 @@ class CreatePostsTable extends Migration
             $table->id();
             $table->mediumText('title');
             $table->longText('content');
-            $table->string('image_name')->nullable();
+            $table->string('post_image_name')->nullable();
             $table->timestamps();
 
             // Foreign Keys:

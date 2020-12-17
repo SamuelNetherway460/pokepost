@@ -15,7 +15,7 @@ class PostTableSeeder extends Seeder
         $post1 = new Post;
         $post1->title = "Testing Title!";
         $post1->content = "Testing Content.";
-        $post1->image_name = null;
+        $post1->post_image_name = "pokemon_12.png";
         $post1->user_id = 1;
         $post1->save();
 

@@ -22,8 +22,8 @@ class ProfileTableSeeder extends Seeder
         $profile1->title = "Mr";
         $profile1->firstname = "Samuel";
         $profile1->lastname = "Netherway";
-        $profile1->profile_image = "https://lorempixel.com/640/480/?58841";
-        $profile1->cover_image = "https://lorempixel.com/640/480/?77616";
+        $profile1->profile_image_name = "profile_535.png";
+        $profile1->cover_image_name = "cover_8.png";
         $profile1->phone_number = "07704649888";
         $profile1->favorite_pokemon = "Charmander";
         $profile1->save();

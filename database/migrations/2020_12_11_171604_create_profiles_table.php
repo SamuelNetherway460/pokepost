@@ -21,8 +21,8 @@ class CreateProfilesTable extends Migration
             $table->string('title');
             $table->string('firstname');
             $table->string('lastname');
-            $table->string('profile_image');
-            $table->string('cover_image');
+            $table->string('profile_image_name')->nullable();
+            $table->string('cover_image_name')->nullable();
             $table->string('phone_number');
             $table->string('favorite_pokemon');
 

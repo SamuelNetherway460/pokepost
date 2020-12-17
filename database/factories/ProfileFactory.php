@@ -22,8 +22,8 @@ $factory->define(Profile::class, function (Faker $faker) {
         'title' => $faker->title,
         'firstname' => $faker->firstName,
         'lastname' => $faker->lastName,
-        'profile_image'=> $faker->imageURL,
-        'cover_image'=> $faker->imageURL,
+        'profile_image_name'=> "profile_" . $faker->numberBetween(1, 583) . ".png",
+        'cover_image_name'=> "cover_" . $faker->numberBetween(1, 11) . ".png",
         'phone_number' => $faker->phoneNumber,
         'favorite_pokemon' => $faker->firstName,
     ];

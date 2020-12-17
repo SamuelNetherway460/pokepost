@@ -17,7 +17,7 @@
             </div>
             @foreach ($posts as $post)
                 <div class="d-flex text-muted pt-3">
-                    <img class="me-3 p-2" src="{{ route('image.displayImage',"pokeball.png") }}" alt width="40" height="40">
+                    <img class="me-3 p-2" src="{{ route('image.getProfileImage', $post->user->profile->profile_image_name) }}" alt width="45" height="45">
                     <div class="pb-3 mb-0 small lh-sm border-bottom w-100">
                         <div class="d-flex justify-content-between">
                             <p>
@@ -28,7 +28,7 @@
                                 <a href="{{ route('posts.show', $post) }}">View</a>
                             </p>
                         </div>
-                        <span class="d-block">{{ $post->title }}</span>
+                        <h6>{{ $post->title }}</h6>
                     </div>
                 </div>
             @endforeach

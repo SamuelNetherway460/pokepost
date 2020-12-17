@@ -36,10 +36,12 @@
         <div class="d-flex text-muted pt-3">
             <div>
                 <h4 class="d-block">{{ $post->title }}</h4>
-                <h6 class="d-block">{{ $post->content }}</h6>
-                @if($post->image_name != null)
-                    <img src="{{ route('image.displayImage',$post->image_name) }}" alt="Post Image" title="Post Image">
+                @if($post->post_image_name != null)
+                    <div class="text-center">
+                        <img src="{{ route('image.getPostImage',$post->post_image_name) }}" class="img-fluid" alt="Post Image" title="Post Image">
+                    </div>
                 @endif
+                <h6 class="d-block">{{ $post->content }}</h6>
             </div>
         </div>
     </div>
@@ -59,7 +61,6 @@
         </div>
 
         <div v-for="comment in comments" class="d-flex text-muted pt-3">
-            <img class="me-3 p-2" src="{{ route('image.displayImage',"pokeball.png") }}" alt width="40" height="40">
             <div class="pb-3 mb-0 small lh-sm border-bottom w-100">
                 <div class="d-flex justify-content-between">
                     <p>

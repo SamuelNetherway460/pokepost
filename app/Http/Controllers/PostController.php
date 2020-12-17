@@ -112,18 +112,75 @@ class PostController extends Controller
     }
 
     /**
-     * Displays an image.
+     * Retrieves a profile image from storage.
+     *
+     * @param   string $filename
+     * @return  \Illuminate\Http\Response
      */
-    public function displayImage($filename)
+    public function getProfileImage($profileFilename)
     {
-        $exists = Storage::disk('public')->exists('/post_images/'.$filename);
+        $exists = Storage::disk('public')->exists('/profile_images/'.$profileFilename);
 
         if($exists) {
             //get content of image
-            $content = Storage::get('public/post_images/'.$filename);
+            $content = Storage::get('public/profile_images/'.$profileFilename);
 
             //get mime type of image
-            $mime = Storage::mimeType('public/post_images/'.$filename);
+            $mime = Storage::mimeType('public/profile_images/'.$profileFilename);
+            //prepare response with image content and response code
+            $response = Response::make($content, 200);
+            //set header
+            $response->header("Content-Type", $mime);
+            // return response
+            return $response;
+         } else {
+            abort(404);
+         }
+    }
+
+    /**
+     * Retrieves a post image from storage.
+     *
+     * @param   string $filename
+     * @return  \Illuminate\Http\Response
+     */
+    public function getPostImage($postFilename)
+    {
+        $exists = Storage::disk('public')->exists('/post_images/'.$postFilename);
+
+        if($exists) {
+            //get content of image
+            $content = Storage::get('public/post_images/'.$postFilename);
+
+            //get mime type of image
+            $mime = Storage::mimeType('public/post_images/'.$postFilename);
+            //prepare response with image content and response code
+            $response = Response::make($content, 200);
+            //set header
+            $response->header("Content-Type", $mime);
+            // return response
+            return $response;
+         } else {
+            abort(404);
+         }
+    }
+
+    /**
+     * Retrieves a cover image from storage.
+     *
+     * @param   string $filename
+     * @return  \Illuminate\Http\Response
+     */
+    public function getCoverImage($coverFilename)
+    {
+        $exists = Storage::disk('public')->exists('/cover_images/'.$coverFilename);
+
+        if($exists) {
+            //get content of image
+            $content = Storage::get('public/cover_images/'.$coverFilename);
+
+            //get mime type of image
+            $mime = Storage::mimeType('public/cover_images/'.$coverFilename);
             //prepare response with image content and response code
             $response = Response::make($content, 200);
             //set header

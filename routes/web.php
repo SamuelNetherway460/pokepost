@@ -42,9 +42,19 @@ Route::post('posts', 'PostController@store')->name('posts.store')->middleware('a
 Route::get('posts/{post}', 'PostController@show')->name('posts.show')->middleware('auth');
 
 /**
- * Display an image.
+ * Gets the post image for a post.
  */
-Route::get('image/{filename}', 'PostController@displayImage')->name('image.displayImage');
+Route::get('post/image/{postfilename}', 'PostController@getPostImage')->name('image.getPostImage');
+
+/**
+ * Gets the profile image of a profile.
+ */
+Route::get('profile/image/{profilefilename}', 'PostController@getProfileImage')->name('image.getProfileImage');
+
+/**
+ * Gets the cover image of a profile.
+ */
+Route::get('cover/image/{coverfilename}', 'PostController@getCoverImage')->name('image.getCoverImage');
 
 /**
  * Delete a post.
