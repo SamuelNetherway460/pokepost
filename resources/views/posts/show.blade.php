@@ -85,12 +85,6 @@
 
     <div class="d-flex justify-content-center">
         <a href="{{ URL::route('posts.index') }}" class="btn btn-primary">Back</a>
-
-        <form method="POST" action="{{ route('comments.destroy', 1)}}">
-            @csrf
-            @method('DELETE')
-            <button class="btn btn-primary" type="submit">Delete Comment 1</button>
-        </form>
     </div>
 
     <script>
@@ -117,10 +111,20 @@
                     })
                 },
                 deleteComment: function(id){
-                    axios.delete("{{ route('comments.destroy', 1) }}")
+                    axios.post("{{ route('comments.destroy') }}",
+                    {
+                        comment_id: id,
+                    })
                     .then(response => {
-                        this.comments.splice(1, 1)
-                    });
+                        for (i = 0; i < this.comments.length; i++) {
+                            if (this.comments[i].id == id) {
+                                this.comments.splice(i, 1);
+                            }
+                        }
+                    })
+                    .catch(response => {
+                        console.log(response);
+                    })
                 }
             },
             mounted(){

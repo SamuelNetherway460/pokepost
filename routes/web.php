@@ -54,7 +54,7 @@ Route::delete('posts/{post}', 'PostController@destroy')->name('posts.destroy')->
 /**
  * Deletes a comment.
  */
-Route::delete('comments/{id}', 'CommentController@destroy')->name('comments.destroy')->middleware('auth');
+Route::post('comments', 'CommentController@destroy')->name('comments.destroy')->middleware('auth');
 
 /**
  * Adds all required routes for user authentication.
