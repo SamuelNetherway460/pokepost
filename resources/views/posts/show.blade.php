@@ -62,20 +62,27 @@
             <img class="me-3 p-2" src="{{ route('image.displayImage',"pokeball.png") }}" alt width="40" height="40">
             <div class="pb-3 mb-0 small lh-sm border-bottom w-100">
                 <div class="d-flex justify-content-between">
-                        <p>
-                            <strong class="text-dark">@{{ comment.user.name }} @{{ comment.id }}</strong>
-                            <strong>&middot @{{ comment.updated_at }}</strong>
-                        </p>
-                        <p>
-                            <!--Admins, moderators and the comment owner can delete the comment-->
-                            <button @click="deleteComment(comment.id)" class="btn btn-primary" type="button">Delete</button>
+                    <p>
+                        <strong class="text-dark">@{{ comment.user.name }}</strong>
+                        <strong>&middot @{{ comment.updated_at }}</strong>
+                    </p>
+                    <p>
+                        <!--Admins, moderators and the comment owner can delete the comment-->
+                        @if(Auth::user()->profile->profileable_type == App\Admin::class)
+                            <button @click="deleteComment(comment.id)" class="btn btn-link" type="button">Delete</button>
+                        @elseif(Auth::user()->profile->profileable_type == App\Moderator::class)
+                            <button @click="deleteComment(comment.id)" class="btn btn-link" type="button">Delete</button>
+                        @else(True)
+                            <button v-if="comment.user_id == {{ Auth::user()->id }}" @click="deleteComment(comment.id)" class="btn btn-link" type="button">Delete</button>
+                        @endif
 
-
-                            <!--Admins and the comment owner can edit the comment-->
-                            <strong v-if="{{ Auth::user()->profile->profileable_type == App\Admin::class }}">&middot Edit</strong>
-                            <strong v-else-if="comment.user_id == {{ Auth::user()->id }}">&middot Edit</strong>
-
-                        </p>
+                        <!--Admins and the comment owner can edit the comment-->
+                        @if(Auth::user()->profile->profileable_type == App\Admin::class)
+                        <button class="btn btn-link" type="button">Edit</button>
+                        @else(True)
+                            <button class="btn btn-link" type="button" v-if="comment.user_id == {{ Auth::user()->id }}">Edit</button>
+                        @endif
+                    </p>
                 </div>
                 <span class="d-block">@{{ comment.content }}</span>
             </div>
