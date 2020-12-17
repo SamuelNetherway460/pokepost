@@ -68,9 +68,8 @@
                         </p>
                         <p>
                             <!--Admins, moderators and the comment owner can delete the comment-->
-                            <strong v-if="{{ Auth::user()->profile->profileable_type == App\Moderator::class }}">Delete</strong>
-                            <strong v-else-if="{{ Auth::user()->profile->profileable_type == App\Admin::class }}">Delete</strong>
-                            <strong v-else-if="comment.user_id == {{ Auth::user()->id }}">Delete</strong>
+                            <button @click="deleteComment(comment.id)" class="btn btn-primary" type="button">Delete</button>
+
 
                             <!--Admins and the comment owner can edit the comment-->
                             <strong v-if="{{ Auth::user()->profile->profileable_type == App\Admin::class }}">&middot Edit</strong>
@@ -86,6 +85,12 @@
 
     <div class="d-flex justify-content-center">
         <a href="{{ URL::route('posts.index') }}" class="btn btn-primary">Back</a>
+
+        <form method="POST" action="{{ route('comments.destroy', 1)}}">
+            @csrf
+            @method('DELETE')
+            <button class="btn btn-primary" type="submit">Delete Comment 1</button>
+        </form>
     </div>
 
     <script>
@@ -110,6 +115,12 @@
                     .catch(response => {
                         console.log(response);
                     })
+                },
+                deleteComment: function(id){
+                    axios.delete("{{ route('comments.destroy', 1) }}")
+                    .then(response => {
+                        this.comments.splice(1, 1)
+                    });
                 }
             },
             mounted(){
