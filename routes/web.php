@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CommentController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -49,6 +50,11 @@ Route::get('image/{filename}', 'PostController@displayImage')->name('image.displ
  * Delete a post.
  */
 Route::delete('posts/{post}', 'PostController@destroy')->name('posts.destroy')->middleware('auth');
+
+/**
+ * Deletes a comment.
+ */
+Route::delete('comments/{id}', 'CommentController@destroy')->name('comments.destroy')->middleware('auth');
 
 /**
  * Adds all required routes for user authentication.

@@ -9,6 +9,7 @@
         <div class="d-flex justify-content-between border-bottom">
             <h2 class="pb-2 mb-0">{{ $post->user->name }} &middot {{ $post->created_at->diffForHumans() }}</h2>
             <div class="p-1">
+                <!--Admins, moderators and the post owner can delete the post-->
                 @if($post->user->id == Auth::user()->id)
                     <form method="POST" action="{{ route('posts.destroy', $post)}}">
                         @csrf
@@ -28,6 +29,8 @@
                         <button class="btn btn-primary" type="submit">Delete</button>
                     </form>
                 @endif
+
+                <!--Admins and the post owner can edit the post-->
             </div>
         </div>
         <div class="d-flex text-muted pt-3">
@@ -60,8 +63,19 @@
             <div class="pb-3 mb-0 small lh-sm border-bottom w-100">
                 <div class="d-flex justify-content-between">
                         <p>
-                            <strong class="text-dark">@{{ comment.user.name }}</strong>
+                            <strong class="text-dark">@{{ comment.user.name }} @{{ comment.id }}</strong>
                             <strong>&middot @{{ comment.updated_at }}</strong>
+                        </p>
+                        <p>
+                            <!--Admins, moderators and the comment owner can delete the comment-->
+                            <strong v-if="{{ Auth::user()->profile->profileable_type == App\Moderator::class }}">Delete</strong>
+                            <strong v-else-if="{{ Auth::user()->profile->profileable_type == App\Admin::class }}">Delete</strong>
+                            <strong v-else-if="comment.user_id == {{ Auth::user()->id }}">Delete</strong>
+
+                            <!--Admins and the comment owner can edit the comment-->
+                            <strong v-if="{{ Auth::user()->profile->profileable_type == App\Admin::class }}">&middot Edit</strong>
+                            <strong v-else-if="comment.user_id == {{ Auth::user()->id }}">&middot Edit</strong>
+
                         </p>
                 </div>
                 <span class="d-block">@{{ comment.content }}</span>

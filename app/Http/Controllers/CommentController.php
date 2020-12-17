@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Post;
 use App\Comment;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class CommentController extends Controller
@@ -94,6 +93,6 @@ class CommentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Comment::findOrFail('id', $id)->delete();
     }
 }
