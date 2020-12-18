@@ -24,7 +24,7 @@
                                 <strong class="text-dark">{{ $post->user->name }}</strong>
                                 <strong>&middot {{ $post->created_at->diffForHumans() }}</strong>
                                 @if($post->updated_at > $post->created_at)
-                                    <strong>&middot Updated {{ $post->updated_at->diffForHumans() }}</strong>
+                                    <strong>&middot updated {{ $post->updated_at->diffForHumans() }}</strong>
                                 @endif
                             </p>
                             <p>

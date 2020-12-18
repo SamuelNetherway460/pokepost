@@ -7,7 +7,11 @@
 <main class="container">
     <div class="my-3 p-3 bg-white rounded shadow-sm">
         <div class="d-flex justify-content-between border-bottom">
-            <h2 class="pb-2 mb-0">{{ $post->user->name }} &middot {{ $post->created_at->diffForHumans() }}</h2>
+            @if($post->updated_at > $post->created_at)
+                <h3 class="pb-2 mb-0">{{ $post->user->name }} &middot {{ $post->created_at->diffForHumans() }} &middot updated {{ $post->updated_at->diffForHumans() }}</h3>
+            @else
+                <h3 class="pb-2 mb-0">{{ $post->user->name }} &middot {{ $post->created_at->diffForHumans() }}</h3>
+            @endif
             <div class="p-1">
                 <!--Admins, moderators and the post owner can delete the post-->
                 @if($post->user->id == Auth::user()->id)
@@ -66,7 +70,7 @@
             <div class="pb-3 mb-0 small lh-sm border-bottom w-100">
                 <div class="d-flex justify-content-between">
                     <p>
-                        <strong class="text-dark">@{{ comment.user.name }}</strong>
+                        <strong class="text-dark">@{{ comment.user.name }} @{{ comment.id }}</strong>
                         <strong>&middot @{{ comment.updated_at }}</strong>
                     </p>
                     <p>
@@ -81,9 +85,18 @@
 
                         <!--Admins and the comment owner can edit the comment-->
                         @if(Auth::user()->profile->profileable_type == App\Admin::class)
-                        <button class="btn btn-link" type="button">Edit</button>
-                        @else(True)
-                            <button class="btn btn-link" type="button" v-if="comment.user_id == {{ Auth::user()->id }}">Edit</button>
+                            <div id="app">
+                                <button v-on:click="editComment(comment.id)" class="btn btn-link" type="button">Edit</button>
+                                <button @click="updateComment(comment.id)" class="btn btn-link" type="button" v-if="edit == comment.id">Update</button>
+                                <span v-if="edit == comment.id">Now you see me</span>
+                            </div>
+                        @else
+                            <div id="app">
+                                <button v-on:click="editComment(comment.id)" class="btn btn-link" type="button" v-if="comment.user_id == {{ Auth::user()->id }}">Edit</button>
+                                <button @click="updateComment(comment.id)" class="btn btn-link" type="button" v-if="edit == comment.id">Update</button>
+                                <div id="app">
+                                <span v-if="edit == comment.id">Now you see me</span>
+                            </div>
                         @endif
                     </p>
                 </div>
@@ -103,6 +116,7 @@
             data: {
                 comments: [],
                 newCommentContent: '',
+                edit: -1
             },
             methods: {
                 createComment: function(){
@@ -135,6 +149,12 @@
                     .catch(response => {
                         console.log(response);
                     })
+                },
+                editComment: function(id){
+                    this.edit = id
+                },
+                updateComment: function(id){
+                    edit: -1
                 }
             },
             mounted(){
