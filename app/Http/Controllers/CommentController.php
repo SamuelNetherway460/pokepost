@@ -19,6 +19,7 @@ class CommentController extends Controller
     {
         $comments = Comment::with('user')
             ->where('comments.post_id', $post->id)
+            ->orderBy('updated_at', 'desc')
             ->get();
         return $comments;
     }

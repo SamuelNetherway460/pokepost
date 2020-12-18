@@ -113,7 +113,7 @@
                         user_id: {{ Auth::user()->id }},
                     })
                     .then(response => {
-                        this.comments.push(response.data);
+                        this.comments.unshift(response.data);
                         this.newCommentContent = '';
                     })
                     .catch(response => {
