@@ -11,16 +11,16 @@
         </div>
         <form method="POST" action="{{ route('posts.store') }}" enctype="multipart/form-data">
             @csrf
-            <div class="input-group input-group-lg mb-3">
-                <textarea class="form-control" aria-label="With textarea" aria-describedby="inputGroup-sizing-lg" placeholder="Title" value="{{ old('title') }}"></textarea>
+            <div class="form-group input-group-lg mb-3">
+                <textarea name="title" class="form-control" aria-label="With textarea" aria-describedby="inputGroup-sizing-lg" placeholder="Title" value="{{ old('title') }}"></textarea>
             </div>
             <img id="output" width="200" />
-            <div class="input-group mb-3">
-                <input type="file" class="form-control" id="chooseFile" alue="{{ old('file') }}">
+            <div class="form-group mb-3">
+                <input name="file" type="file" class="form-control" id="chooseFile" alue="{{ old('file') }}">
                 <label class="input-group-text" for="chooseFile">Upload</label>
               </div>
-            <div class="input-group mb-3">
-                <textarea class="form-control" aria-label="With textarea" aria-describedby="inputGroup-sizing-lg" placeholder="Content" value="{{ old('content') }}"></textarea>
+            <div class="form-group mb-3">
+                <textarea name="content" class="form-control" aria-label="With textarea" aria-describedby="inputGroup-sizing-lg" placeholder="Content" value="{{ old('content') }}"></textarea>
             </div>
             <input class="btn btn-primary" type="submit" value="Submit">
             <a href="{{ route('posts.index') }}">Cancel</a>

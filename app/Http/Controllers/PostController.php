@@ -52,10 +52,10 @@ class PostController extends Controller
         if($request->hasFile('file')) {
             // Only allow jpeg, bmp and png files
             $request->validate([
-                'image' => 'mimes:jpeg,bmp,png'
+                'image' => 'mimes:jpeg,jpg,bmp,png'
             ]);
             $request->file->store('post_images', 'public');
-            $post->image_name = $request->file->hashName();
+            $post->post_image_name = $request->file->hashName();
         }
         $post->save();
 
