@@ -81,9 +81,15 @@ class CommentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function apiUpdate(Request $request)
     {
-        //
+        $comment = Comment::find($request['comment_id']);
+        $comment->content = $request['content'];
+        $comment->save();
+
+        $commentWithUser = $comment->load('user');
+
+        return $commentWithUser;
     }
 
     /**

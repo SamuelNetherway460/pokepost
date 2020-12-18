@@ -18,6 +18,17 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+/**
+ * Gets all comments on a post.
+ */
 Route::get('comments{post}', 'CommentController@apiIndex')->name('api.comments.index');
 
+/**
+ * Stores a new comment.
+ */
 Route::post('comments', 'CommentController@apiStore')->name('api.comments.store');
+
+/**
+ * Updates an existing comment.
+ */
+Route::post('comments/update', 'CommentController@apiUpdate')->name('api.comments.update');

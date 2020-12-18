@@ -153,7 +153,24 @@
                     this.edit = id
                 },
                 updateComment: function(id){
-                    this.edit = -1
+                    axios.post("{{ route('api.comments.update') }}",
+                    {
+                        comment_id: id,
+                        content: this.updatedCommentContent,
+                    })
+                    .then(response => {
+                        for (i = 0; i < this.comments.length; i++) {
+                            if (this.comments[i].id == id) {
+                                this.comments.splice(i, 1);
+                            }
+                        }
+                        this.comments.unshift(response.data);
+                        this.newCommentContent = '';
+                        this.edit = -1;
+                    })
+                    .catch(response => {
+                        console.log(response);
+                    })
                 }
             },
             mounted(){
