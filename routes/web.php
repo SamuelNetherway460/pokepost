@@ -44,17 +44,17 @@ Route::get('posts/{post}', 'PostController@show')->name('posts.show')->middlewar
 /**
  * Gets the post image for a post.
  */
-Route::get('post/image/{postfilename}', 'PostController@getPostImage')->name('image.getPostImage');
+Route::get('post/image/{postfilename}', 'PostController@getPostImage')->name('image.getPostImage')->middleware('auth');
 
 /**
  * Gets the profile image of a profile.
  */
-Route::get('profile/image/{profilefilename}', 'PostController@getProfileImage')->name('image.getProfileImage');
+Route::get('profile/image/{profilefilename}', 'PostController@getProfileImage')->name('image.getProfileImage')->middleware('auth');
 
 /**
  * Gets the cover image of a profile.
  */
-Route::get('cover/image/{coverfilename}', 'PostController@getCoverImage')->name('image.getCoverImage');
+Route::get('cover/image/{coverfilename}', 'PostController@getCoverImage')->name('image.getCoverImage')->middleware('auth');
 
 /**
  * Delete a post.
