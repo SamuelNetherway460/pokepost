@@ -29,7 +29,7 @@ class PostDeleted extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail'];
+        return ['mail', 'database'];
     }
 
     /**
@@ -44,6 +44,20 @@ class PostDeleted extends Notification
                     ->line('The introduction to the notification.')
                     ->action('Notification Action', url('/'))
                     ->line('Thank you for using our application!');
+    }
+
+    /**
+     * Get the database representation of the notification.
+     *
+     * @param   mixed $notifiable
+     * @return  array
+     */
+    public function toDatabase($notifiable)
+    {
+        return [
+            'post_id' => 1,
+            'deleted_by' => 1,
+        ];
     }
 
     /**
