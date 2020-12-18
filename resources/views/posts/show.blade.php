@@ -16,12 +16,14 @@
                         @method('DELETE')
                         <button class="btn btn-primary" type="submit">Delete</button>
                     </form>
+                    <button class="btn btn-primary" type="submit">Edit</button>
                 @elseif(Auth::user()->profile->profileable_type == App\Admin::class)
                     <form method="POST" action="{{ route('posts.destroy', $post)}}">
                         @csrf
                         @method('DELETE')
                         <button class="btn btn-primary" type="submit">Delete</button>
                     </form>
+                    <button class="btn btn-primary" type="submit">Edit</button>
                 @elseif(Auth::user()->profile->profileable_type == App\Moderator::class)
                     <form method="POST" action="{{ route('posts.destroy', $post)}}">
                         @csrf
@@ -38,7 +40,7 @@
                 <h4 class="d-block">{{ $post->title }}</h4>
                 @if($post->post_image_name != null)
                     <div class="text-center">
-                        <img src="{{ route('image.getPostImage',$post->post_image_name) }}" class="img-fluid" alt="Post Image" title="Post Image">
+                        <img src="{{ route('image.getPostImage',$post->post_image_name) }}" alt="Post Image" title="Post Image">
                     </div>
                 @endif
                 <h6 class="d-block">{{ $post->content }}</h6>
