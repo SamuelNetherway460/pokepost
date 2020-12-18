@@ -14,11 +14,10 @@
             <div class="form-group input-group-lg mb-3">
                 <textarea name="title" class="form-control" aria-label="With textarea" aria-describedby="inputGroup-sizing-lg" placeholder="Title" value="{{ old('title') }}"></textarea>
             </div>
-            <img id="output" width="200" />
-            <div class="form-group mb-3">
-                <input name="file" type="file" class="form-control" id="chooseFile" alue="{{ old('file') }}">
-                <label class="input-group-text" for="chooseFile">Upload</label>
-              </div>
+            <div class="input-group mb-3">
+                <input name="file" type="file" class="form-control" id="chooseFile" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+                <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04">Button</button>
+            </div>
             <div class="form-group mb-3">
                 <textarea name="content" class="form-control" aria-label="With textarea" aria-describedby="inputGroup-sizing-lg" placeholder="Content" value="{{ old('content') }}"></textarea>
             </div>

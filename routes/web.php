@@ -47,6 +47,11 @@ Route::get('posts/{post}', 'PostController@show')->name('posts.show')->middlewar
 Route::get('posts/edit/{post}', 'PostController@edit')->name('posts.edit')->middleware('auth');
 
 /**
+ * Update a particular post.
+ */
+Route::post('posts/update/{id}, }', 'PostController@update')->name('posts.update')->middleware('auth');
+
+/**
  * Gets the post image for a post.
  */
 Route::get('post/image/{postfilename}', 'PostController@getPostImage')->name('image.getPostImage')->middleware('auth');

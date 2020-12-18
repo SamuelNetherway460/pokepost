@@ -95,7 +95,27 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validatedData = $request->validate([
+            'title' => 'required|max:100',
+            'content' => 'required|string',
+        ]);
+
+        $post = Post::find($id);
+        $post->title = $validatedData['title'];
+        $post->content = $validatedData['content'];
+
+        if($request->hasFile('file')) {
+            // Only allow jpeg, bmp and png files
+            $request->validate([
+                'image' => 'mimes:jpeg,jpg,bmp,png'
+            ]);
+            $request->file->store('post_images', 'public');
+            $post->post_image_name = $request->file->hashName();
+        }
+        $post->save();
+
+        session()->flash('message', 'Updated!');
+        return redirect()->route('posts.show', $post);
     }
 
     /**
