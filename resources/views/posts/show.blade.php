@@ -16,14 +16,14 @@
                         @method('DELETE')
                         <button class="btn btn-primary" type="submit">Delete</button>
                     </form>
-                    <button class="btn btn-primary" type="submit">Edit</button>
+                    <a href="{{ URL::route('posts.edit', $post->id) }}" class="btn btn-primary">Edit</a>
                 @elseif(Auth::user()->profile->profileable_type == App\Admin::class)
                     <form method="POST" action="{{ route('posts.destroy', $post)}}">
                         @csrf
                         @method('DELETE')
                         <button class="btn btn-primary" type="submit">Delete</button>
                     </form>
-                    <button class="btn btn-primary" type="submit">Edit</button>
+                    <a href="{{ URL::route('posts.edit', $post->id) }}" class="btn btn-primary">Edit</a>
                 @elseif(Auth::user()->profile->profileable_type == App\Moderator::class)
                     <form method="POST" action="{{ route('posts.destroy', $post)}}">
                         @csrf
