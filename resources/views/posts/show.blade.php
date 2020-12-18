@@ -15,19 +15,23 @@
             <div class="p-1">
                 <!--Admins, moderators and the post owner can delete the post-->
                 @if($post->user->id == Auth::user()->id)
+                <div class="btn-group" role="group">
                     <form method="POST" action="{{ route('posts.destroy', $post)}}">
                         @csrf
                         @method('DELETE')
-                        <button class="btn btn-primary" type="submit">Delete</button>
+                        <button class="btn btn-primary mr-1" type="submit">Delete</button>
                     </form>
-                    <a href="{{ URL::route('posts.edit', $post->id) }}" class="btn btn-primary">Edit</a>
+                    <a href="{{ URL::route('posts.edit', $post->id) }}" class="btn btn-primary ml-1">Edit</a>
+                </div>
                 @elseif(Auth::user()->profile->profileable_type == App\Admin::class)
+                <div class="btn-group" role="group">
                     <form method="POST" action="{{ route('posts.destroy', $post)}}">
                         @csrf
                         @method('DELETE')
-                        <button class="btn btn-primary" type="submit">Delete</button>
+                        <button class="btn btn-primary mr-1" type="submit">Delete</button>
                     </form>
-                    <a href="{{ URL::route('posts.edit', $post->id) }}" class="btn btn-primary">Edit</a>
+                    <a href="{{ URL::route('posts.edit', $post->id) }}" class="btn btn-primary ml-1">Edit</a>
+                </div>
                 @elseif(Auth::user()->profile->profileable_type == App\Moderator::class)
                     <form method="POST" action="{{ route('posts.destroy', $post)}}">
                         @csrf
