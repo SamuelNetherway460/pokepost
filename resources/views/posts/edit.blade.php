@@ -14,10 +14,11 @@
             <div class="form-group input-group-lg mb-3">
                 <textarea name="title" class="form-control" aria-label="With textarea" aria-describedby="inputGroup-sizing-lg" placeholder="Title" value="{{ old('title') }}">{{ $post->title }}</textarea>
             </div>
-            <img id="output" width="200" />
-            <div class="text-center">
-                <img src="{{ route('image.getPostImage',$post->post_image_name) }}" alt="Post Image" title="Post Image">
-            </div>
+            @if($post->post_image_name != null)
+                <div class="text-center">
+                    <img src="{{ route('image.getPostImage',$post->post_image_name) }}" alt="Post Image" title="Post Image">
+                </div>
+            @endif
             <div class="input-group mb-3">
                 <input name="file" type="file" class="form-control" id="chooseFile" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
                 <button class="btn btn-primary" type="button" id="inputGroupFileAddon04">Upload</button>
