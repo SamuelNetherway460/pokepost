@@ -68,7 +68,7 @@
 
         <div v-for="comment in comments" class="d-flex text-muted pt-3">
             <div class="pb-3 mb-0 small lh-sm border-bottom w-100">
-                <div class="d-flex justify-content-between">
+                <div id="app" class="d-flex justify-content-between">
                     <p>
                         <strong class="text-dark">@{{ comment.user.name }} @{{ comment.id }}</strong>
                         <strong>&middot @{{ comment.updated_at }}</strong>
@@ -85,22 +85,20 @@
 
                         <!--Admins and the comment owner can edit the comment-->
                         @if(Auth::user()->profile->profileable_type == App\Admin::class)
-                            <div id="app">
-                                <button v-on:click="editComment(comment.id)" class="btn btn-link" type="button">Edit</button>
-                                <button @click="updateComment(comment.id)" class="btn btn-link" type="button" v-if="edit == comment.id">Update</button>
-                                <span v-if="edit == comment.id">Now you see me</span>
-                            </div>
+                            <button v-on:click="editComment(comment.id)" class="btn btn-link" type="button">Edit</button>
+                            <button v-on:click="updateComment(comment.id)" class="btn btn-link" type="button" v-if="edit == comment.id">Update</button>
                         @else
-                            <div id="app">
-                                <button v-on:click="editComment(comment.id)" class="btn btn-link" type="button" v-if="comment.user_id == {{ Auth::user()->id }}">Edit</button>
-                                <button @click="updateComment(comment.id)" class="btn btn-link" type="button" v-if="edit == comment.id">Update</button>
-                                <div id="app">
-                                <span v-if="edit == comment.id">Now you see me</span>
-                            </div>
+                            <button v-on:click="editComment(comment.id)" class="btn btn-link" type="button" v-if="comment.user_id == {{ Auth::user()->id }}">Edit</button>
+                            <button v-on:click="updateComment(comment.id)" class="btn btn-link" type="button" v-if="edit == comment.id">Update</button>
                         @endif
                     </p>
                 </div>
-                <span class="d-block">@{{ comment.content }}</span>
+                <div id="app">
+                    <span v-if="edit != comment.id" class="d-block">@{{ comment.content }}</span>
+                    <span v-if="edit == comment.id" class="d-block">
+                        <textarea v-model="updatedCommentContent" name="content" class="form-control" aria-label="With textarea" aria-describedby="inputGroup-sizing-lg" placeholder="Content">@{{ comment.content }}</textarea>
+                    </span>
+                </div>
             </div>
         </div>
     </div>
@@ -116,7 +114,8 @@
             data: {
                 comments: [],
                 newCommentContent: '',
-                edit: -1
+                edit: -1,
+                updatedCommentContent: ''
             },
             methods: {
                 createComment: function(){
@@ -154,7 +153,7 @@
                     this.edit = id
                 },
                 updateComment: function(id){
-                    edit: -1
+                    this.edit = -1
                 }
             },
             mounted(){
