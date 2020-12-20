@@ -24,7 +24,7 @@ class ProfileController extends Controller
 
         $posts = Post::with('user')
             ->where('posts.user_id', Auth::user()->id)
-            ->orderBy('updated_at', 'desc')->get();
+            ->orderBy('updated_at', 'desc')->simplePaginate(15);
 
         return view('profile.index', ['posts' => $posts, 'numPosts' => $numPosts, 'numComments' => $numComments, 'numDaysActive' => $numDaysActive]);
     }

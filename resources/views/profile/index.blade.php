@@ -6,13 +6,13 @@
 @php $user = Auth::user() @endphp
 @php $profile = Auth::user()->profile @endphp
     <main class="container">
-        <div class="my-3 p-3 bg-white rounded shadow-sm">
-            @if ($profile->cover_image_name != null)
-                <div class="text-center">
-                    <img class="img-fluid" src="{{ route('image.getCoverImage', $profile->cover_image_name) }}" alt="Profile Cover Image" title="Profile Cover Image">
-                </div>
-            @endif
+
             <div class="my-3 p-3 bg-white rounded shadow-sm">
+                @if ($profile->cover_image_name != null)
+                    <div class="text-center">
+                        <img class="img-fluid" src="{{ route('image.getCoverImage', $profile->cover_image_name) }}" alt="Profile Cover Image" title="Profile Cover Image">
+                    </div>
+                @endif
                 <div class="text-center">
                     <h1 class="pb-2 mb-0">{{ $user->name }}</h1>
                     @if ($profile->profile_image_name != null)
@@ -53,20 +53,40 @@
                 </div>
             </div>
             <div class="my-3 p-3 bg-white rounded shadow-sm">
-                <div class="d-flex justify-content-between border-bottom">
-                    <h2 class="pb-2 mb-0">Your Details</h2>
+                <div class="border-bottom">
+                    <h2 class="pb-2 mt-0">Your Details</h2>
+                </div>
+                <div class="mt-3">
+                    <h5>Title: {{ $profile->title }}</h5>
+                    <h5>First Name: {{ $profile->firstname }}</h5>
+                    <h5>Last Name: {{ $profile->lastname }}</h5>
+                    <h5>Phone Number: {{ $profile->phone_number }}</h5>
+                </div>
+            </div>
+            <div class="my-3 p-3 bg-white rounded shadow-sm">
+                <div class="border-bottom">
+                    <h2 class="pb-2 mb-0">Favorite Pokemon</h2>
+                </div>
+                <div class="mt-3 text-center">
+                    <h3>{{ $profile->favorite_pokemon }}</h3>
                 </div>
             </div>
             @if(Auth::user()->profile->profileable_type == App\Admin::class)
                 <div class="my-3 p-3 bg-white rounded shadow-sm">
-                    <div class="d-flex justify-content-between border-bottom">
+                    <div class="border-bottom mb-3">
                         <h2 class="pb-2 mb-0">Admin Actions</h2>
+                    </div>
+                    <div class="mt-3">
+
                     </div>
                 </div>
             @elseif(Auth::user()->profile->profileable_type == App\Moderator::class)
                 <div class="my-3 p-3 bg-white rounded shadow-sm">
                     <div class="d-flex justify-content-between border-bottom">
                         <h2 class="pb-2 mb-0">Moderator Actions</h2>
+                    </div>
+                    <div class="mt-3">
+
                     </div>
                 </div>
             @endif
@@ -96,6 +116,11 @@
                 </div>
             @endforeach
             </div>
-        </div>
     </main>
+@endsection
+
+@section('pagination')
+    <div class="d-flex justify-content-center">
+        {{ $posts->links() }}
+    </div>
 @endsection
