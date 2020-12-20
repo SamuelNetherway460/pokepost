@@ -82,6 +82,21 @@ Route::post('comments', 'CommentController@destroy')->name('comments.destroy')->
 Route::get('profile', 'ProfileController@index')->name('profile.index')->middleware('auth');
 
 /**
+ * Return the total number of posts made by the signed in user.
+ */
+Route::get('profile/stats/posts', 'ProfileController@index')->name('profile.numPosts')->middleware('auth');
+
+/**
+ * Return the total number of comments made by the signed in user.
+ */
+Route::get('profile/stats/comments', 'ProfileController@index')->name('profile.numComments')->middleware('auth');
+
+/**
+ * Return the number of days active for the signed in user.
+ */
+Route::get('profile/stats/daysActive', 'ProfileController@index')->name('profile.numDaysActive')->middleware('auth');
+
+/**
  * Adds all required routes for user authentication.
  */
 Auth::routes();
