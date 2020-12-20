@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Profile;
 use App\Post;
+use App\Comment;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use DateTime;
 
 class ProfileController extends Controller
 {
@@ -16,11 +18,15 @@ class ProfileController extends Controller
      */
     public function index()
     {
+        $numPosts = $this->numPosts();
+        $numComments = $this->numComments();
+        $numDaysActive = $this->numDaysActive();
+
         $posts = Post::with('user')
             ->where('posts.user_id', Auth::user()->id)
             ->orderBy('updated_at', 'desc')->get();
 
-        return view('profile.index', ['posts' => $posts]);
+        return view('profile.index', ['posts' => $posts, 'numPosts' => $numPosts, 'numComments' => $numComments, 'numDaysActive' => $numDaysActive]);
     }
 
     /**
@@ -30,7 +36,10 @@ class ProfileController extends Controller
      */
     public function numPosts()
     {
-
+        $posts = Post::with('user')
+            ->where('posts.user_id', Auth::user()->id)
+            ->get();
+        return count($posts);
     }
 
     /**
@@ -40,7 +49,10 @@ class ProfileController extends Controller
      */
     public function numComments()
     {
-
+        $posts = Comment::with('user')
+            ->where('comments.user_id', Auth::user()->id)
+            ->get();
+        return count($posts);
     }
 
     /**
@@ -50,7 +62,11 @@ class ProfileController extends Controller
      */
     public function numDaysActive()
     {
-
+        $dateSignedUp = new DateTime(Auth::user()->created_at);
+        $currentDate = new DateTime(date('Y-m-d H:i:s'));
+        $interval = $dateSignedUp->diff($currentDate);
+        $days = $interval->format('%a');
+        return $days;
     }
 
     /**

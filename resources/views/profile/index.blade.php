@@ -31,7 +31,7 @@
                             <h4 class="my-0 font-weight-normal">Posts</h4>
                         </div>
                         <div class="card-body">
-                            <h1 class="card-title text-info">3</h1>
+                            <h1 class="card-title text-info">{{ $numPosts }}</h1>
                         </div>
                     </div>
                     <div class="card shadow-sm">
@@ -39,7 +39,7 @@
                             <h4 class="my-0 font-weight-normal">Comments</h4>
                         </div>
                         <div class="card-body">
-                            <h1 class="card-title text-info">44</h1>
+                            <h1 class="card-title text-info">{{ $numComments }}</h1>
                         </div>
                     </div>
                     <div class="card shadow-sm">
@@ -47,7 +47,7 @@
                             <h4 class="my-0 font-weight-normal">Days Active</h4>
                         </div>
                         <div class="card-body">
-                            <h1 class="card-title text-info">300</h1>
+                            <h1 class="card-title text-info">{{ $numDaysActive }}</h1>
                         </div>
                     </div>
                 </div>
