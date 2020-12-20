@@ -16,7 +16,10 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        $posts = Auth::user()->posts;
+        $posts = Post::with('user')
+            ->where('posts.user_id', Auth::user()->id)
+            ->orderBy('updated_at', 'desc')->get();
+
         return view('profile.index', ['posts' => $posts]);
     }
 

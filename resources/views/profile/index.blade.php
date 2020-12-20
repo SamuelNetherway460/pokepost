@@ -8,12 +8,14 @@
     <main class="container">
         <div class="my-3 p-3 bg-white rounded shadow-sm">
             @if ($profile->cover_image_name != null)
-                <img class="img-fluid" src="{{ route('image.getCoverImage', $profile->cover_image_name) }}" alt="Profile Cover Image" title="Profile Cover Image">
+                <div class="text-center">
+                    <img class="img-fluid" src="{{ route('image.getCoverImage', $profile->cover_image_name) }}" alt="Profile Cover Image" title="Profile Cover Image">
+                </div>
             @endif
             <div class="my-3 p-3 bg-white rounded shadow-sm">
                 <div class="text-center">
                     <h1 class="pb-2 mb-0">{{ $user->name }}</h1>
-                    @if ($profile->cover_image_name != null)
+                    @if ($profile->profile_image_name != null)
                         <img src="{{ route('image.getProfileImage', $profile->profile_image_name) }}" alt="Profile Image" title="Profile Image" width="100" height="100">
                     @endif
                     <h3>{{ $profile->firstname }} {{ $profile->lastname }}</h3>
