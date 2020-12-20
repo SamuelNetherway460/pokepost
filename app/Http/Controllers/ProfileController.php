@@ -24,6 +24,36 @@ class ProfileController extends Controller
     }
 
     /**
+     * Get the total number of posts for the currently signed in user.
+     *
+     * @return int
+     */
+    public function numPosts()
+    {
+
+    }
+
+    /**
+     * Get the total number of comments for the currently signed in user.
+     *
+     * @return int
+     */
+    public function numComments()
+    {
+
+    }
+
+    /**
+     * Get the total number of days that the currently signed in user has been active for.
+     *
+     * @return int
+     */
+    public function numDaysActive()
+    {
+
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
