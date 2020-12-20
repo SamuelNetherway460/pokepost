@@ -23,10 +23,40 @@
             </div>
             <div class="my-3 p-3 bg-white rounded shadow-sm">
                 <div class="d-flex justify-content-between border-bottom">
+                    <h2 class="pb-2 mb-0">Your Stats</h2>
+                </div>
+                <div class="card-deck mt-3 text-center">
+                    <div class="card shadow-sm">
+                        <div class="card-header">
+                            <h4 class="my-0 font-weight-normal">Posts</h4>
+                        </div>
+                        <div class="card-body">
+                            <h1 class="card-title text-info">3</h1>
+                        </div>
+                    </div>
+                    <div class="card shadow-sm">
+                        <div class="card-header">
+                            <h4 class="my-0 font-weight-normal">Comments</h4>
+                        </div>
+                        <div class="card-body">
+                            <h1 class="card-title text-info">44</h1>
+                        </div>
+                    </div>
+                    <div class="card shadow-sm">
+                        <div class="card-header">
+                            <h4 class="my-0 font-weight-normal">Days Active</h4>
+                        </div>
+                        <div class="card-body">
+                            <h1 class="card-title text-info">300</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="my-3 p-3 bg-white rounded shadow-sm">
+                <div class="d-flex justify-content-between border-bottom">
                     <h2 class="pb-2 mb-0">Your Details</h2>
                 </div>
             </div>
-
             @if(Auth::user()->profile->profileable_type == App\Admin::class)
                 <div class="my-3 p-3 bg-white rounded shadow-sm">
                     <div class="d-flex justify-content-between border-bottom">
