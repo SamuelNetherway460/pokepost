@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CommentController;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -85,3 +86,11 @@ Auth::routes();
  * Go to home screen.
  */
 Route::get('/home', 'HomeController@index')->name('home');
+
+/**
+ * Guzzle Testing
+ */
+Route::get('/pokemon', function() {
+    $response = Http::get('https://pokeapi.co/api/v2/pokemon/ditto');
+    dd($response->json());
+});
