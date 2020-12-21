@@ -96,6 +96,6 @@ Route::get('/home', 'HomeController@index')->name('home');
  * Guzzle Testing
  */
 Route::get('/pokemon', function() {
-    $response = Http::get('https://pokeapi.co/api/v2/pokemon/ditto');
+    $response = Http::get('https://pokeapi.co/api/v2/pokemon/weedle');
     dd($response->json());
 });

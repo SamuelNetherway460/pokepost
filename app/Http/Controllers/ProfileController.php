@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Profile;
 use App\Post;
 use App\Comment;
+use App\Pokemon\PokemonGateway;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use DateTime;
@@ -26,7 +27,12 @@ class ProfileController extends Controller
             ->where('posts.user_id', Auth::user()->id)
             ->orderBy('updated_at', 'desc')->simplePaginate(15);
 
-        return view('profile.index', ['posts' => $posts, 'numPosts' => $numPosts, 'numComments' => $numComments, 'numDaysActive' => $numDaysActive]);
+        $userDetails = ['posts' => $posts, 'numPosts' => $numPosts, 'numComments' => $numComments, 'numDaysActive' => $numDaysActive];
+
+        $pokemonGateway = new PokemonGateway();
+        dd($pokemonGateway);
+
+        return view('profile.index', $userDetails);
     }
 
     /**
