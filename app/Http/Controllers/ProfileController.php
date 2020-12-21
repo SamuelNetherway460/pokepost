@@ -29,7 +29,8 @@ class ProfileController extends Controller
 
         $userDetails = ['posts' => $posts, 'numPosts' => $numPosts, 'numComments' => $numComments, 'numDaysActive' => $numDaysActive];
 
-        dd($pokemonGateway->pokemon('ditto'));
+        $pokemonDetails = $pokemonGateway->pokemon('weedle');
+        dd($pokemonDetails);
 
         return view('profile.index', $userDetails);
     }
