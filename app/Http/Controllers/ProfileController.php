@@ -30,9 +30,9 @@ class ProfileController extends Controller
         $userDetails = ['posts' => $posts, 'numPosts' => $numPosts, 'numComments' => $numComments, 'numDaysActive' => $numDaysActive];
 
         $pokemon = $pokemonGateway->pokemon('weedle');
-        $pokemonDetails = ['name' => $pokemon->get_name(), 'baseExperience' => $pokemon->get_base_experience(), 'height' => $pokemon->get_height()];
+        $favoritePokemon = ['favoritePokemon' => $pokemon];
 
-        return view('profile.index', $userDetails, $pokemonDetails);
+        return view('profile.index', $userDetails, $favoritePokemon);
     }
 
     /**

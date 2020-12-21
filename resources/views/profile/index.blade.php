@@ -69,6 +69,8 @@
                 </div>
                 <div class="mt-3 text-center">
                     <h3>{{ $profile->favorite_pokemon }}</h3>
+                    <h4>Base Experience: {{ $favoritePokemon->get_base_experience() }}</h4>
+                    <h4>Height: {{ $favoritePokemon->get_height() }}</h4>
                 </div>
             </div>
             @if(Auth::user()->profile->profileable_type == App\Admin::class)
