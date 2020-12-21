@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Pokemon\PokemonGateway;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -13,7 +14,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->bind(PokemonGateway::class, function($app) {
+            return new PokemonGateway('https://pokeapi.co/api/v2/pokemon/');
+        });
     }
 
     /**

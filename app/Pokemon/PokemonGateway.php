@@ -4,9 +4,17 @@ namespace App\Pokemon;
 
 class PokemonGateway
 {
-    public function getPokemon($name)
+    private $baseURL;
+
+    public function __construct($baseURL)
+    {
+        $this->baseURL = $baseURL;
+    }
+
+    public function pokemon($name)
     {
         return [
+            'url' => $this->baseURL,
             'name' => $name,
             'base_experience' => 101,
             'height' => 3,

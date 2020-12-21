@@ -17,7 +17,7 @@ class ProfileController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(PokemonGateway $pokemonGateway)
     {
         $numPosts = $this->numPosts();
         $numComments = $this->numComments();
@@ -29,8 +29,7 @@ class ProfileController extends Controller
 
         $userDetails = ['posts' => $posts, 'numPosts' => $numPosts, 'numComments' => $numComments, 'numDaysActive' => $numDaysActive];
 
-        $pokemonGateway = new PokemonGateway();
-        dd($pokemonGateway);
+        dd($pokemonGateway->pokemon('ditto'));
 
         return view('profile.index', $userDetails);
     }
