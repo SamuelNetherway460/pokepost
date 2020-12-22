@@ -115,13 +115,13 @@ class ProfileController extends Controller
         $posts = Post::with('user')
             ->where('posts.user_id', $profile->user->id)
             ->orderBy('updated_at', 'desc')->simplePaginate(15);
-
-        $userDetails = ['posts' => $posts, 'numPosts' => $numPosts, 'numComments' => $numComments, 'numDaysActive' => $numDaysActive];
-
         $pokemon = $pokemonGateway->pokemon($profile->favorite_pokemon);
+
+        $user = ['user' => $profile->user];
+        $userDetails = ['posts' => $posts, 'numPosts' => $numPosts, 'numComments' => $numComments, 'numDaysActive' => $numDaysActive];
         $favoritePokemon = ['favoritePokemon' => $pokemon];
 
-        return view('profile.index', $userDetails, $favoritePokemon);
+        return view('profile.index', $userDetails, $favoritePokemon, $user);
     }
 
     /**
