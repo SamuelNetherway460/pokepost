@@ -22,8 +22,7 @@ class CheckProfile
         }
         else
         {
-            // TODO - Redirect to the create profile view instead
-            return response("You must make a profile first!");
+            return redirect('/profile/create');
         }
     }
 }
