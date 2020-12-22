@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use App\Profile;
 use App\Post;
 use App\Comment;
@@ -19,9 +20,9 @@ class ProfileController extends Controller
      */
     public function index(PokemonGateway $pokemonGateway)
     {
-        $numPosts = $this->numPosts();
-        $numComments = $this->numComments();
-        $numDaysActive = $this->numDaysActive();
+        $numPosts = $this->numPosts(Auth::user());
+        $numComments = $this->numComments(Auth::user());
+        $numDaysActive = $this->numDaysActive(Auth::user());
 
         $posts = Post::with('user')
             ->where('posts.user_id', Auth::user()->id)
@@ -38,12 +39,13 @@ class ProfileController extends Controller
     /**
      * Get the total number of posts for the currently signed in user.
      *
-     * @return int
+     * @param   App\User
+     * @return  int
      */
-    public function numPosts()
+    public function numPosts(User $user)
     {
         $posts = Post::with('user')
-            ->where('posts.user_id', Auth::user()->id)
+            ->where('posts.user_id', $user->id)
             ->get();
         return count($posts);
     }
@@ -51,12 +53,13 @@ class ProfileController extends Controller
     /**
      * Get the total number of comments for the currently signed in user.
      *
-     * @return int
+     * @param   App\User
+     * @return  int
      */
-    public function numComments()
+    public function numComments(User $user)
     {
         $posts = Comment::with('user')
-            ->where('comments.user_id', Auth::user()->id)
+            ->where('comments.user_id', $user->id)
             ->get();
         return count($posts);
     }
@@ -64,11 +67,12 @@ class ProfileController extends Controller
     /**
      * Get the total number of days that the currently signed in user has been active for.
      *
-     * @return int
+     * @param   App\User
+     * @return  int
      */
-    public function numDaysActive()
+    public function numDaysActive(User $user)
     {
-        $dateSignedUp = new DateTime(Auth::user()->created_at);
+        $dateSignedUp = new DateTime($user->created_at);
         $currentDate = new DateTime(date('Y-m-d H:i:s'));
         $interval = $dateSignedUp->diff($currentDate);
         $days = $interval->format('%a');
@@ -102,9 +106,22 @@ class ProfileController extends Controller
      * @param  \App\Profile  $profile
      * @return \Illuminate\Http\Response
      */
-    public function show(Profile $profile)
+    public function show(Profile $profile, PokemonGateway $pokemonGateway)
     {
-        //
+        $numPosts = $this->numPosts($profile->user);
+        $numComments = $this->numComments($profile->user);
+        $numDaysActive = $this->numDaysActive($profile->user);
+
+        $posts = Post::with('user')
+            ->where('posts.user_id', $profile->user->id)
+            ->orderBy('updated_at', 'desc')->simplePaginate(15);
+
+        $userDetails = ['posts' => $posts, 'numPosts' => $numPosts, 'numComments' => $numComments, 'numDaysActive' => $numDaysActive];
+
+        $pokemon = $pokemonGateway->pokemon($profile->favorite_pokemon);
+        $favoritePokemon = ['favoritePokemon' => $pokemon];
+
+        return view('profile.index', $userDetails, $favoritePokemon);
     }
 
     /**
