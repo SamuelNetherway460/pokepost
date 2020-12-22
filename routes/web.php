@@ -82,6 +82,11 @@ Route::post('comments', 'CommentController@destroy')->name('comments.destroy')->
 Route::get('profile/show/{profile}', 'ProfileController@show')->name('profile.show')->middleware('auth');
 
 /**
+ * Display the create profile view.
+ */
+Route::get('profile/create', 'ProfileController@create')->name('profile.create')->middleware('auth');
+
+/**
  * Display the profile view.
  */
 Route::get('profile', 'ProfileController@index')->name('profile.index')->middleware('auth');

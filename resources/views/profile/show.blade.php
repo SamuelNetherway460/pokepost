@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Profile')
+@section('title', 'Show Profile')
 
 @section('content')
     <main class="container">

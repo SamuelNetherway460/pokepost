@@ -24,6 +24,13 @@ class RouteServiceProvider extends ServiceProvider
     public const HOME = '/posts';
 
     /**
+     * The path to the create profile view.
+     *
+     * @var string
+     */
+    public const CREATE_PROFILE = '/profile/create';
+
+    /**
      * Define your route model bindings, pattern filters, etc.
      *
      * @return void

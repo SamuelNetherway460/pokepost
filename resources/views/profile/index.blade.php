@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Profile')
+@section('title', 'My Profile')
 
 @section('content')
 @php $user = Auth::user() @endphp
