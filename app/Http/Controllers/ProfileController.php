@@ -7,8 +7,10 @@ use App\Profile;
 use App\Post;
 use App\Comment;
 use App\Pokemon\PokemonGateway;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use DateTime;
 
 class ProfileController extends Controller
@@ -155,5 +157,32 @@ class ProfileController extends Controller
     public function destroy(Profile $profile)
     {
         //
+    }
+
+    /**
+     * Retrieves a pokemon image from storage.
+     *
+     * @param   string $filename
+     * @return  \Illuminate\Http\Response
+     */
+    public function getPokemonImage($filename)
+    {
+        $exists = Storage::disk('public')->exists('/pokemon/'.$filename);
+
+        if($exists) {
+            //get content of image
+            $content = Storage::get('public/pokemon/'.$filename);
+
+            //get mime type of image
+            $mime = Storage::mimeType('public/pokemon/'.$filename);
+            //prepare response with image content and response code
+            $response = Response::make($content, 200);
+            //set header
+            $response->header("Content-Type", $mime);
+            // return response
+            return $response;
+         } else {
+            abort(404);
+         }
     }
 }
