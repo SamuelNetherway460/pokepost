@@ -82,6 +82,11 @@ Route::post('comments', 'CommentController@destroy')->name('comments.destroy')->
 Route::get('profile', 'ProfileController@index')->name('profile.index')->middleware('auth');
 
 /**
+ * Display a specified profile.
+ */
+Route::get('profile{profile}', 'ProfileController@show')->name('profile.show')->middleware('auth');
+
+/**
  * Adds all required routes for user authentication.
  */
 Auth::routes();
