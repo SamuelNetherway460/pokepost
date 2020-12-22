@@ -16,6 +16,12 @@ $factory->define(Profile::class, function (Faker $faker) {
     $profileableType = $faker->randomElement($profileables);
     $profileable = factory($profileableType)->create();
 
+    $pokemon = [
+        'charmander',
+        'weedle',
+        'ditto',
+    ];
+
     return [
         'profileable_type' => $profileableType,
         'profileable_id' => $profileable->id,
@@ -25,6 +31,6 @@ $factory->define(Profile::class, function (Faker $faker) {
         'profile_image_name'=> "profile_" . $faker->numberBetween(1, 583) . ".png",
         'cover_image_name'=> "cover_" . $faker->numberBetween(1, 11) . ".png",
         'phone_number' => $faker->phoneNumber,
-        'favorite_pokemon' => $faker->firstName,
+        'favorite_pokemon' => $faker->randomElement($pokemon),
     ];
 });
