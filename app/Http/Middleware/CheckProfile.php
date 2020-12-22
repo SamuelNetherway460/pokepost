@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Illuminate\Support\Facades\Auth;
 
 class CheckProfile
 {
@@ -15,6 +16,14 @@ class CheckProfile
      */
     public function handle($request, Closure $next)
     {
-        return $next($request);
+        if (Auth::user()->profile != null)
+        {
+            return $next($request);
+        }
+        else
+        {
+            // TODO - Redirect to the create profile view instead
+            return response("You must make a profile first!");
+        }
     }
 }
