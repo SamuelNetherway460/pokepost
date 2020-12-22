@@ -14,7 +14,7 @@
                 <div class="text-center">
                     <h1 class="pb-2 mb-0">{{ $user->name }}</h1>
                     @if ($user->profile->profile_image_name != null)
-                        <img src="{{ route('image.getProfileImage', $profile->profile_image_name) }}" alt="Profile Image" title="Profile Image" width="100" height="100">
+                        <img src="{{ route('image.getProfileImage', $user->profile->profile_image_name) }}" alt="Profile Image" title="Profile Image" width="100" height="100">
                     @endif
                 </div>
             </div>
@@ -54,7 +54,7 @@
                     <h2 class="pb-2 mb-0">Favorite Pokemon</h2>
                 </div>
                 <div class="mt-3 text-center">
-                    <h3>{{ $profile->favorite_pokemon }}</h3>
+                    <h3>{{ $user->profile->favorite_pokemon }}</h3>
                     <h4>Base Experience: {{ $favoritePokemon->get_base_experience() }}</h4>
                     <h4>Height: {{ $favoritePokemon->get_height() }}</h4>
                 </div>
@@ -70,7 +70,7 @@
                     <div class="pb-3 mb-0 small lh-sm border-bottom w-100">
                         <div class="d-flex justify-content-between">
                             <p>
-                                <strong class="text-dark">{{ $post->user->name }}</strong>
+                                <a href="{{ route('profile.show', $post->user->profile) }}">{{ $post->user->name }}</a>
                                 <strong>&middot {{ $post->created_at->diffForHumans() }}</strong>
                                 @if($post->updated_at > $post->created_at)
                                     <strong>&middot updated {{ $post->updated_at->diffForHumans() }}</strong>

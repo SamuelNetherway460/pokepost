@@ -103,7 +103,7 @@
                     <div class="pb-3 mb-0 small lh-sm border-bottom w-100">
                         <div class="d-flex justify-content-between">
                             <p>
-                                <strong class="text-dark">{{ $post->user->name }}</strong>
+                                <a href="{{ route('profile.show', $post->user->profile) }}">{{ $post->user->name }}</a>
                                 <strong>&middot {{ $post->created_at->diffForHumans() }}</strong>
                                 @if($post->updated_at > $post->created_at)
                                     <strong>&middot updated {{ $post->updated_at->diffForHumans() }}</strong>

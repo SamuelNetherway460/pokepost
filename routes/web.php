@@ -77,14 +77,14 @@ Route::delete('posts/{post}', 'PostController@destroy')->name('posts.destroy')->
 Route::post('comments', 'CommentController@destroy')->name('comments.destroy')->middleware('auth');
 
 /**
+ * Display a specified profile.
+ */
+Route::get('profile/show/{profile}', 'ProfileController@show')->name('profile.show')->middleware('auth');
+
+/**
  * Display the profile view.
  */
 Route::get('profile', 'ProfileController@index')->name('profile.index')->middleware('auth');
-
-/**
- * Display a specified profile.
- */
-Route::get('profile{profile}', 'ProfileController@show')->name('profile.show')->middleware('auth');
 
 /**
  * Adds all required routes for user authentication.

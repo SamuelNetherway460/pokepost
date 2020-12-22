@@ -117,11 +117,10 @@ class ProfileController extends Controller
             ->orderBy('updated_at', 'desc')->simplePaginate(15);
         $pokemon = $pokemonGateway->pokemon($profile->favorite_pokemon);
 
-        $user = ['user' => $profile->user];
-        $userDetails = ['posts' => $posts, 'numPosts' => $numPosts, 'numComments' => $numComments, 'numDaysActive' => $numDaysActive];
-        $favoritePokemon = ['favoritePokemon' => $pokemon];
+        $parameters = ['user' => $profile->user, 'posts' => $posts, 'numPosts' => $numPosts,
+            'numComments' => $numComments, 'numDaysActive' => $numDaysActive, 'favoritePokemon' => $pokemon];
 
-        return view('profile.index', $userDetails, $favoritePokemon, $user);
+        return view('profile.show', $parameters);
     }
 
     /**
