@@ -24,7 +24,7 @@ Route::get('/', function () {
 /**
  * View all posts.
  */
-Route::get('posts', 'PostController@index')->name('posts.index')->middleware('auth');
+Route::get('posts', 'PostController@index')->name('posts.index')->middleware(['auth', 'profile']);
 
 /**
  * Display the view to create a new post.
