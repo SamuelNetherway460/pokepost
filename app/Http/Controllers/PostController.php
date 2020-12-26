@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Post;
+use App\Tag;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -59,8 +60,50 @@ class PostController extends Controller
         }
         $post->save();
 
+        $rawTagsString = $request['tags'];
+        $rawTagsNoSpaces = str_replace(' ', '', $rawTagsString);
+        $tagArray = explode('#', $rawTagsNoSpaces);
+
+        // Add new tags to the database.
+        // Add tags to posts.
+        foreach($tagArray as $tag) {
+            if($tag != '')
+            {
+                if (!$this->tagAlreadyExists($tag))
+                {
+                    $newtag = new Tag(['name' => $tag]);
+                    $newtag->save();
+                    $post->tags()->attach($newtag);
+                }
+                else
+                {
+                    $existingTag = Tag::where('tags.name', $tag)->get();
+                    $post->tags()->attach($existingTag);
+                }
+            }
+        }
+
         session()->flash('message', 'Posted!');
         return redirect()->route('posts.index');
+    }
+
+    /**
+     * Checks if a tag with the specified name already exists.
+     *
+     * @param String $tag
+     * @return Boolean
+     */
+    private function tagAlreadyExists(String $tag)
+    {
+        $tag = Tag::where('tags.name', $tag)->get();
+        if (count($tag) == 0)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
     }
 
     /**
