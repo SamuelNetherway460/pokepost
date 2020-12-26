@@ -5,7 +5,8 @@
 @section('content')
 
 <main class="container">
-    <form>
+    <form method="POST" action="{{ route('profiles.store') }}" enctype="multipart/form-data">
+        @csrf
         <div class="my-3 p-3 bg-white rounded shadow-sm">
             <div class="d-flex justify-content-between border-bottom mb-3">
                 <h2 class="pb-2 mb-0">Create a Profile</h2>
@@ -13,7 +14,7 @@
                 <div class="row g-3">
                     <div class="col-md-10">
                         <label for="title" class="form-label">Title</label>
-                        <select class="form-select" id="title" required="">
+                        <select class="form-select" id="title" name="title" required="" value="{{ old('title') }}">
                             <option value="">Choose...</option>
                             <option>Mr</option>
                             <option>Mrs</option>
@@ -25,30 +26,21 @@
                         </div>
                     </div>
                     <div class="col-md-6 mt-1">
-                        <label for="firstName" class="form-label">First Name</label>
-                        <input type="text" class="form-control" id="firstName" placeholder="First name" value="" required="true">
+                        <label for="firstname" class="form-label">First Name</label>
+                        <input name="firstname" type="text" class="form-control" id="firstname" placeholder="First name" required="true" value="{{ old('firstname') }}">
                     </div>
                     <div class="col-md-6 mt-1">
-                        <label for="lastName" class="form-label">Last Name</label>
-                        <input type="text" class="form-control" id="lastName" placeholder="Last name" value="" required="true">
+                        <label for="lastname" class="form-label">Last Name</label>
+                        <input name="lastname" type="text" class="form-control" id="lastname" placeholder="Last name" required="true" value="{{ old('lastname') }}">
                     </div>
                     <div class="col-md-12 mt-3">
                         <label for="phoneNumber" class="form-label">Phone Number</label>
-                        <input type="tel" class="form-control" id="phoneNumber" placeholder="Phone Number" value="" required="true">
+                        <input name="phoneNumber" class="form-control" id="phoneNumber" placeholder="Phone Number" required="true" value="{{ old('phoneNumber') }}">
                     </div>
-                    <div class="col-md-12 mt-3">
+                    <div class="col-md-12 mt-3 input-group">
                         <label for="profileImage" class="form-label">Profile Image</label>
-                        <div class="input-group">
-                            <input name="file" type="file" class="form-control" id="profileImage" aria-describedby="profileImage" aria-label="Upload">
-                            <button class="btn btn-primary" type="button" id="profileImage">Button</button>
-                        </div>
-                    </div>
-                    <div class="col-md-12 mt-3">
-                        <label for="coverImage" class="form-label">Cover Image</label>
-                        <div class="input-group">
-                            <input name="file" type="file" class="form-control" id="coverImage" aria-describedby="coverImage" aria-label="Upload">
-                            <button class="btn btn-primary" type="button" id="coverImage">Button</button>
-                        </div>
+                        <input name="profileImage" type="file" class="form-control" id="profileImage" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+                        <button class="btn btn-primary" type="button" id="inputGroupFileAddon04">Upload</button>
                     </div>
                 </div>
         </div>
@@ -89,6 +81,9 @@
                         <img src="{{ route('profile.pokemonImage', 'pikachu.png') }}" width="150" height="150">
                     </div>
                 </div>
+            </div>
+            <div class="pt-3">
+                <input class="btn btn-primary" type="submit" value="Create">
             </div>
         </div>
     </form>

@@ -50,7 +50,7 @@ class PostController extends Controller
         $post->content = $validatedData['content'];
 
         if($request->hasFile('file')) {
-            // Only allow jpeg, bmp and png files
+            // Only allow jpeg, jpg, bmp and png
             $request->validate([
                 'image' => 'mimes:jpeg,jpg,bmp,png'
             ]);

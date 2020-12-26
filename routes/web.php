@@ -92,6 +92,11 @@ Route::get('profile/show/{profile}', 'ProfileController@show')->name('profile.sh
 Route::get('profile/create', 'ProfileController@create')->name('profile.create')->middleware('auth');
 
 /**
+ * Store the new profile in the database.
+ */
+Route::post('profiles', 'ProfileController@store')->name('profiles.store')->middleware('auth');
+
+/**
  * Display the profile view.
  */
 Route::get('profile', 'ProfileController@index')->name('profile.index')->middleware('auth');

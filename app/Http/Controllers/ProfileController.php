@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\Profile;
+use App\Basic;
 use App\Post;
 use App\Comment;
+use App\Moderator;
 use App\Pokemon\PokemonGateway;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Auth;
@@ -99,7 +101,38 @@ class ProfileController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'title' => 'required|max:4',
+            'firstname' => 'required|max:30|string',
+            'lastname' => 'required|max:30|string',
+            'phoneNumber' => 'numeric',
+        ]);
+
+        $profile = new Profile;
+        $profile->user_id = Auth::id();
+        $profile->title = $validatedData['title'];
+        $profile->firstname = $validatedData['firstname'];
+        $profile->lastname = $validatedData['lastname'];
+        $profile->phone_number = $validatedData['phoneNumber'];
+        $profile->favorite_pokemon = "charmander";
+
+        if($request->hasFile('file')) {
+            // Only allow jpeg, jpg, bmp and png
+            $request->validate([
+                'image' => 'mimes:jpeg,jpg,bmp,png'
+            ]);
+            $request->file->store('profile_images', 'public');
+            $profile->profile_image_name = $request->file->hashname();
+        }
+
+        $basic = new Basic();
+        $basic->save();
+        $profile->profileable_id = $basic->id;
+        $profile->profileable_type = App\Basic::class;
+        $profile->save();
+
+        session()->flash('message', 'Profile Created!');
+        return redirect()->route('posts.index');
     }
 
     /**
