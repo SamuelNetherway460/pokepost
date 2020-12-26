@@ -16,7 +16,7 @@ class PostTagTableSeeder extends Seeder
         $tags = Tag::all();
         Post::all()->each(function ($post) use ($tags) {
             $post->tags()->attach(
-                $tags->random(rand(0, 17))->pluck('id')->toArray()
+                $tags->random(rand(1, 5))->pluck('id')->toArray()
             );
         });
     }
