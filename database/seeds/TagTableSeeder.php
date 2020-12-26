@@ -24,9 +24,6 @@ class TagTableSeeder extends Seeder
         $funny = new Tag(['name' => 'Funny']);
         $funny->save();
 
-        $newPokemon = new Tag(['name' => 'New Pokemon']);
-        $newPokemon->save();
-
         $event = new Tag(['name' => 'Event']);
         $event->save();
 
