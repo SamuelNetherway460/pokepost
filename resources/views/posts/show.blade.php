@@ -46,6 +46,11 @@
         <div class="d-flex text-muted pt-3">
             <div>
                 <h4 class="d-block">{{ $post->title }}</h4>
+                @foreach ($tags as $tag)
+                    <div>
+                        {{ $tag->name }}
+                    </div>
+                @endforeach
                 @if($post->post_image_name != null)
                     <div class="text-center">
                         <img src="{{ route('image.getPostImage',$post->post_image_name) }}" alt="Post Image" title="Post Image">
@@ -62,7 +67,6 @@
         <div class="d-flex border-bottom">
             <h2 class="pb-2 mb-0">Comments</h2>
         </div>
-
         <div class="input-group mt-3">
             <input type="text" id="input" v-model="newCommentContent" class="form-control" placeholder="Comment" aria-label="Add Comment" aria-describedby="basic-addon2">
             <div class="input-group-append">
