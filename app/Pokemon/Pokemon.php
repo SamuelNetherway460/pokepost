@@ -7,6 +7,16 @@ class Pokemon
     public $name;
     public $baseExperience;
     public $height;
+    public $weight;
+    public $abilities;
+    public $moves;
+    public $hp;
+    public $attack;
+    public $specialAttack;
+    public $speed;
+    public $type;
+    public $defence;
+
 
     public function __construct($name, $baseExperience, $height)
     {
