@@ -53,7 +53,14 @@ class PokemonGateway
         $height = $jsonPokemon['height'];
         $weight = $jsonPokemon['weight'];
         $moves = $this->parse_json_moves($jsonPokemon);
-        dd($moves);
+        $stats = $this->parse_json_stats($jsonPokemon);
+        if (array_key_exists('hp', $stats)) $hp = $stats['hp'];
+        if (array_key_exists('attack', $stats)) $attack = $stats['attack'];
+        if (array_key_exists('special-attack', $stats)) $specialAttack = $stats['special-attack'];
+        if (array_key_exists('defense', $stats)) $defence = $stats['defense'];
+        if (array_key_exists('special-defense', $stats)) $specialDefence = $stats['special-defense'];
+        if (array_key_exists('speed', $stats)) $speed = $stats['speed'];
+        dd($speed);
 
         $pokemon = new Pokemon($name, $baseExperience, $height);
         return $pokemon;
@@ -69,7 +76,7 @@ class PokemonGateway
     {
         $abilities = [];
         $abilitiesArray = $jsonPokemon['abilities'];
-        foreach ($abilitiesArray as $ability) {
+        foreach($abilitiesArray as $ability) {
             $parsedAbility = $ability['ability']['name'];
             $formattedAbility = str_replace('-', ' ', $parsedAbility);
             array_push($abilities, $formattedAbility);
@@ -81,17 +88,37 @@ class PokemonGateway
      * Parses the moves for a JSON Pokemon object.
      *
      * @param JSON $jsonPokemon
-     * @return $moves
+     * @return array
      */
     private function parse_json_moves($jsonPokemon)
     {
         $moves = [];
         $movesArray = $jsonPokemon['moves'];
-        foreach ($movesArray as $move) {
+        foreach($movesArray as $move) {
             $parsedMove = $move['move']['name'];
             $formattedMove = str_replace('-', ' ', $parsedMove);
             array_push($moves, $formattedMove);
         }
         return $moves;
+    }
+
+    /**
+     * Parses the stats for a JSON Pokemon object.
+     *
+     * @param JSON $jsonPokemon
+     * @return array
+     */
+    private function parse_json_stats($jsonPokemon) {
+
+        $jsonStatsArray = $jsonPokemon['stats'];
+        $stats = [];
+
+        foreach($jsonStatsArray as $stat) {
+            $name = $stat['stat']['name'];
+            $value = $stat['base_stat'];
+            $stats[$name] = $value;
+        }
+
+        return $stats;
     }
 }
