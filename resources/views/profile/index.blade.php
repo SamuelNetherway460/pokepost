@@ -67,12 +67,61 @@
                 <div class="border-bottom">
                     <h2 class="pb-2 mb-0">Favorite Pokemon</h2>
                 </div>
-                <div v-if="pokemon != null && pokemon.name != 'error'" class="mt-3">
-                    <h5>Name: @{{ pokemon.name }}</h5>
-                    <h5>Base Experience: @{{ pokemon.baseExperience }}</h5>
-                    <h5>Height: @{{ pokemon.height }}</h5>
+                <div v-if="pokemon != null" class="mt-3">
+                    <div class="d-flex mx-auto card w-50 shadow-sm border-primary">
+                        <div class="card-header text-center">
+                            <h4 class="my-0 font-weight-normal">@{{ pokemon.name }}</h4>
+                        </div>
+                        <div class="p-3 card-text">
+                            <div class="d-flex justify-content-between border-bottom">
+                                <h5>Height</h5>
+                                <h5>@{{ pokemon.height }}</h5>
+                            </div>
+                            <div class="d-flex justify-content-between border-bottom mt-2">
+                                <h5>Weight</h5>
+                                <h5>@{{ pokemon.weight }}</h5>
+                            </div>
+                            <div class="d-flex justify-content-between border-bottom mt-2">
+                                <h5>HP</h5>
+                                <h5>@{{ pokemon.hp }}</h5>
+                            </div>
+                            <div class="d-flex justify-content-between border-bottom mt-2">
+                                <h5>Speed</h5>
+                                <h5>@{{ pokemon.speed }}</h5>
+                            </div>
+                            <div class="d-flex justify-content-between border-bottom mt-2">
+                                <h5>Attack</h5>
+                                <h5>@{{ pokemon.attack }}</h5>
+                            </div>
+                            <div class="d-flex justify-content-between border-bottom mt-2">
+                                <h5>Special Attack</h5>
+                                <h5>@{{ pokemon.specialAttack }}</h5>
+                            </div>
+                            <div class="d-flex justify-content-between border-bottom mt-2">
+                                <h5>Defense</h5>
+                                <h5>@{{ pokemon.defence }}</h5>
+                            </div>
+                            <div class="d-flex justify-content-between border-bottom mt-2">
+                                <h5>Special Defense</h5>
+                                <h5>@{{ pokemon.specialDefence }}</h5>
+                            </div>
+                            <div class="d-flex justify-content-between border-bottom mt-2">
+                                <h5>Base Experience</h5>
+                                <h5>@{{ pokemon.baseExperience }}</h5>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                        <div class="d-flex justify-content-between">
+                            <h5>Abilities:
+                                <div class="mt-3" v-for="ability in pokemon.abilities">
+                                    <p>- @{{ ability }}</p>
+                                </div>
+                            </h5>
+                        </div>
+                        </div>
+                    </div>
                 </div>
-                <div v-if="pokemon != null && pokemon.name == 'error'" class="mt-3">
+                <div v-if="pokemon == null" class="mt-3">
                     <h5 class="text-danger">Error - Cannot get favorite pokemon information!</h5>
                 </div>
             </div>
@@ -101,25 +150,28 @@
                     <h2 class="pb-2 mb-0">Your Posts</h2>
                 </div>
                 @foreach ($posts as $post)
-                <div class="d-flex text-muted pt-3">
-                    <img class="me-3 p-2" src="{{ route('image.getProfileImage', $post->user->profile->profile_image_name) }}" alt width="45" height="45">
-                    <div class="pb-3 mb-0 small lh-sm border-bottom w-100">
-                        <div class="d-flex justify-content-between">
-                            <p>
-                                <a href="{{ route('profile.show', $post->user->profile) }}">{{ $post->user->name }}</a>
-                                <strong>&middot {{ $post->created_at->diffForHumans() }}</strong>
-                                @if($post->updated_at > $post->created_at)
-                                    <strong>&middot updated {{ $post->updated_at->diffForHumans() }}</strong>
-                                @endif
-                            </p>
-                            <p>
-                                <a href="{{ route('posts.show', $post) }}">View</a>
-                            </p>
+                    <div class="d-flex text-muted pt-3">
+                        <img class="me-3 p-2" src="{{ route('image.getProfileImage', $post->user->profile->profile_image_name) }}" alt width="45" height="45">
+                        <div class="pb-3 mb-0 small lh-sm border-bottom w-100">
+                            <div class="d-flex justify-content-between">
+                                <p>
+                                    <a href="{{ route('profile.show', $post->user->profile) }}">{{ $post->user->name }}</a>
+                                    <strong>&middot {{ $post->created_at->diffForHumans() }}</strong>
+                                    @if($post->updated_at > $post->created_at)
+                                        <strong>&middot updated {{ $post->updated_at->diffForHumans() }}</strong>
+                                    @endif
+                                </p>
+                                <p>
+                                    <a href="{{ route('posts.show', $post) }}">View</a>
+                                </p>
+                            </div>
+                            <h6>{{ $post->title }}</h6>
                         </div>
-                        <h6>{{ $post->title }}</h6>
                     </div>
-                </div>
-            @endforeach
+                @endforeach
+                @if (count($posts) == 0)
+                    <h5 class="mt-3">No posts yet!</h5>
+                @endif
             </div>
     </main>
 

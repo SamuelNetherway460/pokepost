@@ -21,10 +21,6 @@ class PokemonGateway
         {
             $pokemon = $this->parse_json_pokemon($response->json());
         }
-        else
-        {
-            $pokemon = new Pokemon("error", 0, 0);
-        }
         return $pokemon;
     }
 
@@ -64,7 +60,6 @@ class PokemonGateway
 
         $pokemon = new Pokemon($name, $abilities, $baseExperience, $height, $weight,
             $moves, $hp, $attack, $specialAttack, $defence, $specialDefence, $speed, $types);
-        dd($pokemon);
         return $pokemon;
     }
 
