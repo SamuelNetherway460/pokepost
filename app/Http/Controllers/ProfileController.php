@@ -218,4 +218,15 @@ class ProfileController extends Controller
             abort(404);
          }
     }
+
+    /** Gets data on a pokemon.
+     *
+     * @param   String $pokemonName
+     * @return  JSON
+     */
+    public function apiPokemon(String $pokemonName, PokemonGateway $pokemonGateway)
+    {
+        $pokemon = $pokemonGateway->pokemon(Auth::user()->profile->favorite_pokemon);
+        return $pokemon;
+    }
 }
