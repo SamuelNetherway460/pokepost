@@ -61,9 +61,10 @@ class PokemonGateway
         if (array_key_exists('special-defense', $stats)) $specialDefence = $stats['special-defense'];
         if (array_key_exists('speed', $stats)) $speed = $stats['speed'];
         $types = $this->parse_json_types($jsonPokemon);
-        dd($types);
 
-        $pokemon = new Pokemon($name, $baseExperience, $height);
+        $pokemon = new Pokemon($name, $abilities, $baseExperience, $height, $weight,
+            $moves, $hp, $attack, $specialAttack, $defence, $specialDefence, $speed, $types);
+        dd($pokemon);
         return $pokemon;
     }
 
