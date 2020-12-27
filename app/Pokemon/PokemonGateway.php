@@ -2,6 +2,7 @@
 
 namespace App\Pokemon;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Http\Client\ConnectionException;
 
 class PokemonGateway
 {
@@ -14,14 +15,28 @@ class PokemonGateway
 
     public function pokemon($name)
     {
-        $jsonPokemon = $this->queryPokeAPI($name);
-        $pokemon = $this->parse_json_pokemon($jsonPokemon);
+        $response = $this->queryPokeAPI($name);
+        $pokemon = null;
+        if ($response != null)
+        {
+            $pokemon = $this->parse_json_pokemon($response->json());
+        }
+        else
+        {
+            $pokemon = new Pokemon("error", 0, 0);
+        }
         return $pokemon;
     }
 
     private function queryPokeAPI($name)
     {
-        return Http::get($this->baseURL . $name)->json();
+        $response = null;
+        try {
+            $response = Http::get($this->baseURL . $name)->throw();
+        } catch (ConnectionException $e) {
+
+        }
+        return $response;
     }
 
     private function parse_json_pokemon($jsonPokemon)

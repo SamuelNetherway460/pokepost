@@ -67,10 +67,13 @@
                 <div class="border-bottom">
                     <h2 class="pb-2 mb-0">Favorite Pokemon</h2>
                 </div>
-                <div v-if="pokemon != null" class="mt-3">
+                <div v-if="pokemon != null && pokemon.name != 'error'" class="mt-3">
                     <h5>Name: @{{ pokemon.name }}</h5>
                     <h5>Base Experience: @{{ pokemon.baseExperience }}</h5>
                     <h5>Height: @{{ pokemon.height }}</h5>
+                </div>
+                <div v-if="pokemon != null && pokemon.name == 'error'" class="mt-3">
+                    <h5 class="text-danger">Error - Cannot get favorite pokemon information!</h5>
                 </div>
             </div>
             @if(Auth::user()->profile->profileable_type == App\Admin::class)
