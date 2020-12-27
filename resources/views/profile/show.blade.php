@@ -49,14 +49,66 @@
                     </div>
                 </div>
             </div>
-            <div class="my-3 p-3 bg-white rounded shadow-sm">
+            <div id='pokemonShow' class="my-3 p-3 bg-white rounded shadow-sm">
                 <div class="border-bottom">
                     <h2 class="pb-2 mb-0">Favorite Pokemon</h2>
                 </div>
-                <div class="mt-3 text-center">
-                    <h3>{{ $user->profile->favorite_pokemon }}</h3>
-                    <h4>Base Experience: {{ $favoritePokemon->get_base_experience() }}</h4>
-                    <h4>Height: {{ $favoritePokemon->get_height() }}</h4>
+                <div v-if="pokemon != null" class="mt-3">
+                    <div class="d-flex mx-auto card w-50 shadow-sm border-primary">
+                        <div class="card-header text-center">
+                            <h4 class="my-0 font-weight-normal">@{{ pokemon.name }}</h4>
+                        </div>
+                        <div class="p-3 card-text">
+                            <div class="d-flex justify-content-between border-bottom">
+                                <h5>Height</h5>
+                                <h5>@{{ pokemon.height }}</h5>
+                            </div>
+                            <div class="d-flex justify-content-between border-bottom mt-2">
+                                <h5>Weight</h5>
+                                <h5>@{{ pokemon.weight }}</h5>
+                            </div>
+                            <div class="d-flex justify-content-between border-bottom mt-2">
+                                <h5>HP</h5>
+                                <h5>@{{ pokemon.hp }}</h5>
+                            </div>
+                            <div class="d-flex justify-content-between border-bottom mt-2">
+                                <h5>Speed</h5>
+                                <h5>@{{ pokemon.speed }}</h5>
+                            </div>
+                            <div class="d-flex justify-content-between border-bottom mt-2">
+                                <h5>Attack</h5>
+                                <h5>@{{ pokemon.attack }}</h5>
+                            </div>
+                            <div class="d-flex justify-content-between border-bottom mt-2">
+                                <h5>Special Attack</h5>
+                                <h5>@{{ pokemon.specialAttack }}</h5>
+                            </div>
+                            <div class="d-flex justify-content-between border-bottom mt-2">
+                                <h5>Defense</h5>
+                                <h5>@{{ pokemon.defence }}</h5>
+                            </div>
+                            <div class="d-flex justify-content-between border-bottom mt-2">
+                                <h5>Special Defense</h5>
+                                <h5>@{{ pokemon.specialDefence }}</h5>
+                            </div>
+                            <div class="d-flex justify-content-between border-bottom mt-2">
+                                <h5>Base Experience</h5>
+                                <h5>@{{ pokemon.baseExperience }}</h5>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                        <div class="d-flex justify-content-between">
+                            <h5>Abilities:
+                                <div class="mt-3" v-for="ability in pokemon.abilities">
+                                    <p>- @{{ ability }}</p>
+                                </div>
+                            </h5>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+                <div v-if="pokemon == null" class="mt-3">
+                    <h5 class="text-danger">Error - Cannot get favorite pokemon information!</h5>
                 </div>
             </div>
 
@@ -84,8 +136,29 @@
                     </div>
                 </div>
             @endforeach
+            @if (count($posts) == 0)
+                    <h5 class="mt-3">No posts yet!</h5>
+            @endif
             </div>
     </main>
+
+    <script>
+        var pokemonShow = new Vue({
+            el: '#pokemonShow',
+            data: {
+                pokemon: null,
+            },
+            mounted(){
+                axios.get("{{ route('api.pokemon.get', $user->profile->favorite_pokemon) }}")
+                .then( response => {
+                    this.pokemon = response.data;
+                })
+                .catch( response=> {
+                    console.log(response);
+                })
+            },
+        });
+    </script>
 @endsection
 
 @section('pagination')

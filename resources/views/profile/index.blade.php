@@ -63,7 +63,7 @@
                     <h5>Phone Number: {{ $profile->phone_number }}</h5>
                 </div>
             </div>
-            <div id='pokemon' class="my-3 p-3 bg-white rounded shadow-sm">
+            <div id='pokemonIndex' class="my-3 p-3 bg-white rounded shadow-sm">
                 <div class="border-bottom">
                     <h2 class="pb-2 mb-0">Favorite Pokemon</h2>
                 </div>
@@ -176,8 +176,8 @@
     </main>
 
     <script>
-        var pokemon = new Vue({
-            el: '#pokemon',
+        var pokemonIndex = new Vue({
+            el: '#pokemonIndex',
             data: {
                 pokemon: null,
             },
