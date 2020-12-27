@@ -39,12 +39,39 @@ class PokemonGateway
         return $response;
     }
 
+    /**
+     * Parses a JSON Pokemon Object.
+     *
+     * @param JSON $jsonPokemon
+     * @return App\Pokemon $pokemon
+     */
     private function parse_json_pokemon($jsonPokemon)
     {
         $name = $jsonPokemon['name'];
+        $abilities = $this->parse_json_abilities($jsonPokemon);
+        dd($abilities);
+
         $baseExperience = $jsonPokemon['base_experience'];
         $height = $jsonPokemon['height'];
         $pokemon = new Pokemon($name, $baseExperience, $height);
         return $pokemon;
+    }
+
+    /**
+     * Parses the abilities for a JSON Pokemon object.
+     *
+     * @param JSON $jsonPokemon
+     * @return $abilities
+     */
+    private function parse_json_abilities($jsonPokemon)
+    {
+        $abilities = [];
+        $abilitiesArray = $jsonPokemon['abilities'];
+        foreach ($abilitiesArray as $ability) {
+            $parsedAbility = $ability['ability']['name'];
+            $formattedability = str_replace('-', ' ', $parsedAbility);
+            array_push($abilities, $formattedability);
+        }
+        return $abilities;
     }
 }
