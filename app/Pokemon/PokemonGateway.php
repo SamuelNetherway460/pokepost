@@ -60,7 +60,8 @@ class PokemonGateway
         if (array_key_exists('defense', $stats)) $defence = $stats['defense'];
         if (array_key_exists('special-defense', $stats)) $specialDefence = $stats['special-defense'];
         if (array_key_exists('speed', $stats)) $speed = $stats['speed'];
-        dd($speed);
+        $types = $this->parse_json_types($jsonPokemon);
+        dd($types);
 
         $pokemon = new Pokemon($name, $baseExperience, $height);
         return $pokemon;
@@ -108,17 +109,30 @@ class PokemonGateway
      * @param JSON $jsonPokemon
      * @return array
      */
-    private function parse_json_stats($jsonPokemon) {
-
+    private function parse_json_stats($jsonPokemon)
+    {
         $jsonStatsArray = $jsonPokemon['stats'];
         $stats = [];
-
         foreach($jsonStatsArray as $stat) {
             $name = $stat['stat']['name'];
             $value = $stat['base_stat'];
             $stats[$name] = $value;
         }
-
         return $stats;
+    }
+
+    /**
+     * Parses the types for a JSON Pokemon Object.
+     *
+     * @param JSON $jsonPokemon
+     * @return array
+     */
+    private function parse_json_types($jsonPokemon) {
+        $types = [];
+        $jsonTypes = $jsonPokemon['types'];
+        foreach($jsonTypes as $type) {
+            array_push($types, $type['type']['name']);
+        }
+        return $types;
     }
 }
