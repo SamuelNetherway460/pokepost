@@ -49,10 +49,12 @@ class PokemonGateway
     {
         $name = $jsonPokemon['name'];
         $abilities = $this->parse_json_abilities($jsonPokemon);
-        dd($abilities);
-
         $baseExperience = $jsonPokemon['base_experience'];
         $height = $jsonPokemon['height'];
+        $weight = $jsonPokemon['weight'];
+        $moves = $this->parse_json_moves($jsonPokemon);
+        dd($moves);
+
         $pokemon = new Pokemon($name, $baseExperience, $height);
         return $pokemon;
     }
@@ -69,9 +71,27 @@ class PokemonGateway
         $abilitiesArray = $jsonPokemon['abilities'];
         foreach ($abilitiesArray as $ability) {
             $parsedAbility = $ability['ability']['name'];
-            $formattedability = str_replace('-', ' ', $parsedAbility);
-            array_push($abilities, $formattedability);
+            $formattedAbility = str_replace('-', ' ', $parsedAbility);
+            array_push($abilities, $formattedAbility);
         }
         return $abilities;
+    }
+
+    /**
+     * Parses the moves for a JSON Pokemon object.
+     *
+     * @param JSON $jsonPokemon
+     * @return $moves
+     */
+    private function parse_json_moves($jsonPokemon)
+    {
+        $moves = [];
+        $movesArray = $jsonPokemon['moves'];
+        foreach ($movesArray as $move) {
+            $parsedMove = $move['move']['name'];
+            $formattedMove = str_replace('-', ' ', $parsedMove);
+            array_push($moves, $formattedMove);
+        }
+        return $moves;
     }
 }
