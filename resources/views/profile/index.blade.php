@@ -63,14 +63,14 @@
                     <h5>Phone Number: {{ $profile->phone_number }}</h5>
                 </div>
             </div>
-            <div class="my-3 p-3 bg-white rounded shadow-sm">
+            <div id='pokemon' class="my-3 p-3 bg-white rounded shadow-sm">
                 <div class="border-bottom">
                     <h2 class="pb-2 mb-0">Favorite Pokemon</h2>
                 </div>
-                <div class="mt-3 text-center">
-                    <h3>{{ $profile->favorite_pokemon }}</h3>
-                    <h4>Base Experience: {{ $favoritePokemon->get_base_experience() }}</h4>
-                    <h4>Height: {{ $favoritePokemon->get_height() }}</h4>
+                <div v-if="pokemon != null" class="mt-3">
+                    <h5>Name: @{{ pokemon.name }}</h5>
+                    <h5>Base Experience: @{{ pokemon.baseExperience }}</h5>
+                    <h5>Height: @{{ pokemon.height }}</h5>
                 </div>
             </div>
             @if(Auth::user()->profile->profileable_type == App\Admin::class)
@@ -119,6 +119,24 @@
             @endforeach
             </div>
     </main>
+
+    <script>
+        var pokemon = new Vue({
+            el: '#pokemon',
+            data: {
+                pokemon: null,
+            },
+            mounted(){
+                axios.get("{{ route('api.pokemon.get', $profile->favorite_pokemon) }}")
+                .then( response => {
+                    this.pokemon = response.data;
+                })
+                .catch( response=> {
+                    console.log(response);
+                })
+            },
+        });
+    </script>
 @endsection
 
 @section('pagination')

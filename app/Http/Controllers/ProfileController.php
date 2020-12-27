@@ -226,7 +226,7 @@ class ProfileController extends Controller
      */
     public function apiPokemon(String $pokemonName, PokemonGateway $pokemonGateway)
     {
-        $pokemon = $pokemonGateway->pokemon(Auth::user()->profile->favorite_pokemon);
-        return $pokemon;
+        $pokemon = $pokemonGateway->pokemon($pokemonName);
+        return json_encode($pokemon);
     }
 }

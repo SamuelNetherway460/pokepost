@@ -4,9 +4,9 @@ namespace App\Pokemon;
 
 class Pokemon
 {
-    private $name;
-    private $baseExperience;
-    private $height;
+    public $name;
+    public $baseExperience;
+    public $height;
 
     public function __construct($name, $baseExperience, $height)
     {
