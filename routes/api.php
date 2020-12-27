@@ -32,3 +32,8 @@ Route::post('comments', 'CommentController@apiStore')->name('api.comments.store'
  * Updates an existing comment.
  */
 Route::post('comments/update', 'CommentController@apiUpdate')->name('api.comments.update');
+
+/**
+ * Gets data on a specific pokemon.
+ */
+Route::get('pokemon/{pokemonName}', 'ProfileController@apiPokemon')->name('api.pokemon.get');
