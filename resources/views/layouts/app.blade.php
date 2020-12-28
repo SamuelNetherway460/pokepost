@@ -60,9 +60,11 @@
                                 </a>
                                 <ul class="dropdown-menu notify-drop">
                                     <div class="drop-content ml-3 mr-3 mt-1">
-                                        <li>Notification One</li>
-                                        <li>Notification Two</li>
-                                        <li>Notification Three</li>
+                                        <li>
+                                            @foreach (Auth::user()->unreadNotifications()->get() as $notification)
+                                                @include('layouts.partials.notification_types.'.Str::snake(class_basename($notification->type)))
+                                            @endforeach
+                                        </li>
                                     </div>
                                 </ul>
                             </li>
