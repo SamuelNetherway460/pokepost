@@ -11,14 +11,18 @@ class PostDeleted extends Notification
 {
     use Queueable;
 
+    protected $post;
+    protected $user;
+
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($post, $user)
     {
-        //
+        $this->post = $post;
+        $this->user = $user;
     }
 
     /**
@@ -56,8 +60,8 @@ class PostDeleted extends Notification
     public function toDatabase($notifiable)
     {
         return [
-            'post_id' => 1,
-            'deleted_by' => 1,
+            'post' => $this->post,
+            'user' => $this->user,
         ];
     }
 

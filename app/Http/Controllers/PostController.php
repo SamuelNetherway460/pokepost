@@ -172,7 +172,7 @@ class PostController extends Controller
     {
         $username = $post->user->name;
         $post->delete();
-        $post->user->notify(new PostDeleted());
+        $post->user->notify(new PostDeleted($post, Auth::user()));
 
         return redirect()->route('posts.index')->with('message', $username."'".'s post was deleted!');
     }

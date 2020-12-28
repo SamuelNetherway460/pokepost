@@ -56,15 +56,15 @@
                         @else
                             <li class="dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    Notifications <span class="badge badge-danger">22</span>
+                                    Notifications <span class="badge badge-danger">{{ count(Auth::user()->unreadNotifications()->get()) }}</span>
                                 </a>
                                 <ul class="dropdown-menu notify-drop">
                                     <div class="drop-content ml-3 mr-3 mt-1">
-                                        <li>
-                                            @foreach (Auth::user()->unreadNotifications()->get() as $notification)
-                                                @include('layouts.partials.notification_types.'.Str::snake(class_basename($notification->type)))
-                                            @endforeach
-                                        </li>
+                                        <hr>
+                                        @foreach (Auth::user()->unreadNotifications()->get() as $notification)
+                                            <li>@include('layouts.partials.notification_types.'.Str::snake(class_basename($notification->type)))</li>
+                                            <hr>
+                                        @endforeach
                                     </div>
                                 </ul>
                             </li>
