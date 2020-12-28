@@ -54,6 +54,18 @@
                                 </li>
                             @endif
                         @else
+                            <li class="dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    Notifications <span class="badge badge-danger">22</span>
+                                </a>
+                                <ul class="dropdown-menu notify-drop">
+                                    <div class="drop-content ml-3 mr-3 mt-1">
+                                        <li>Notification One</li>
+                                        <li>Notification Two</li>
+                                        <li>Notification Three</li>
+                                    </div>
+                                </ul>
+                            </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
