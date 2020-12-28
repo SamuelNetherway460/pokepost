@@ -72,6 +72,7 @@
                         <div class="card-header text-center">
                             <h4 class="my-0 font-weight-normal">@{{ pokemon.name }}</h4>
                         </div>
+                        <img class="card-img-top"src="{{ route('profile.pokemonImage', $profile->favorite_pokemon.'.png') }}">
                         <div class="p-3 card-text">
                             <div class="d-flex justify-content-between border-bottom">
                                 <h5>Height</h5>
