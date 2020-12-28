@@ -11,6 +11,7 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('/js/notifications.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.0/axios.min.js"></script>
 
@@ -54,7 +55,7 @@
                                 </li>
                             @endif
                         @else
-                            <li class="dropdown">
+                            <li class="dropdown" id="markasread" onclick="markNotificationAsRead()">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     Notifications <span class="badge badge-danger">{{ count(Auth::user()->unreadNotifications()->get()) }}</span>
                                 </a>

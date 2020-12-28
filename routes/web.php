@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\CommentController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -110,3 +110,10 @@ Auth::routes();
  * Go to home screen.
  */
 Route::get('/home', 'HomeController@index')->name('home');
+
+/**
+ * Mark notifcations as read.
+ */
+Route::get('markAsRead', function() {
+    Auth::user()->unreadNotifications->markAsRead();
+});
