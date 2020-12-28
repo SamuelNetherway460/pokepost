@@ -29,7 +29,8 @@ class PostDeleted extends Notification
      */
     public function via($notifiable)
     {
-        return explode(', ', $notifiable->notification_preference);
+        //return explode(', ', $notifiable->notification_preference);
+        return ['database'];
     }
 
     /**
