@@ -4,6 +4,7 @@ namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Notifications\Messages\BroadcastMessage;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
@@ -11,8 +12,8 @@ class PostDeleted extends Notification
 {
     use Queueable;
 
-    protected $post;
-    protected $user;
+    public $post;
+    public $user;
 
     /**
      * Create a new notification instance.
@@ -34,7 +35,7 @@ class PostDeleted extends Notification
     public function via($notifiable)
     {
         //return explode(', ', $notifiable->notification_preference);
-        return ['database'];
+        return ['database', 'broadcast'];
     }
 
     /**
@@ -63,6 +64,20 @@ class PostDeleted extends Notification
             'post' => $this->post,
             'user' => $this->user,
         ];
+    }
+
+    /**
+     * Get the broadcast representation of the notification.
+     *
+     * @param   mixed $notifiable
+     * @return  array
+     */
+    public function toBroadcast($notifiable)
+    {
+        return new BroadcastMessage ([
+            'post' => $this->post,
+            'user' => $this->user,
+        ]);
     }
 
     /**
