@@ -17,6 +17,7 @@ use DateTime;
 
 class ProfileController extends Controller
 {
+    // Testing notifications git branch
     /**
      * Display a listing of the resource.
      *
