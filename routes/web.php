@@ -21,6 +21,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+//TODO - Remove
+/**
+ * Test screen for debugging purposes.
+ */
+Route::get('/test', function () {
+    return view('test');
+});
+
 /**
  * View all posts.
  */
