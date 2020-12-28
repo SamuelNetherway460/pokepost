@@ -62,10 +62,12 @@
                                 <ul class="dropdown-menu notify-drop">
                                     <div class="drop-content ml-3 mr-3 mt-1">
                                         <hr>
-                                        @foreach (Auth::user()->unreadNotifications()->get() as $notification)
+                                        @forelse (Auth::user()->unreadNotifications()->get() as $notification)
                                             <li>@include('layouts.partials.notification_types.'.Str::snake(class_basename($notification->type)))</li>
+                                            @empty
+                                            <p>No Notifications</p>
                                             <hr>
-                                        @endforeach
+                                        @endforelse
                                     </div>
                                 </ul>
                             </li>
