@@ -55,22 +55,9 @@
                                 </li>
                             @endif
                         @else
-                            <li class="dropdown" id="markasread" onclick="markNotificationAsRead()">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    Notifications <span class="badge badge-danger">{{ count(Auth::user()->unreadNotifications()->get()) }}</span>
-                                </a>
-                                <ul class="dropdown-menu notify-drop">
-                                    <div class="drop-content ml-3 mr-3 mt-1">
-                                        <hr>
-                                        @forelse (Auth::user()->unreadNotifications()->get() as $notification)
-                                            <li>@include('layouts.partials.notification_types.'.Str::snake(class_basename($notification->type)))</li>
-                                            @empty
-                                            <p>No Notifications</p>
-                                            <hr>
-                                        @endforelse
-                                    </div>
-                                </ul>
-                            </li>
+                            <div id="notifications">
+                                <notifications :unreads="{{ Auth::user()->unreadNotifications()->get() }}" :userid="{{ Auth::user()->id }}"></notifications>
+                            </div>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
