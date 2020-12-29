@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Post;
 use App\Comment;
+use App\Notifications\CommentDeleted;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CommentController extends Controller
 {
@@ -100,6 +102,8 @@ class CommentController extends Controller
      */
     public function destroy(Request $request)
     {
+        $comment = Comment::findOrFail($request['comment_id'], 'id')->get();
+        $comment->user->notify(new CommentDeleted($comment, Auth::user()));
         Comment::findOrFail($request['comment_id'], 'id')->delete();
     }
 }
