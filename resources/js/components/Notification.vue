@@ -7,9 +7,6 @@
 
 <script>
     export default {
-        props: ['unread'],
-        mounted() {
-
-        }
+        props: ['unread']
     }
 </script>
