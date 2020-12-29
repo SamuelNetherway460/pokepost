@@ -1946,6 +1946,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['unreads', 'userid'],
@@ -1956,6 +1958,14 @@ __webpack_require__.r(__webpack_exports__);
     return {
       unreadNotifications: this.unreads
     };
+  },
+  methods: {
+    markNotificationsAsRead: function markNotificationsAsRead() {
+      if (this.unreadNotifications.length) {
+        axios.get('/markAsRead');
+        this.unreadNotifications = [];
+      }
+    }
   },
   mounted: function mounted() {
     var _this = this;
@@ -43746,6 +43756,17 @@ var render = function() {
         "div",
         { staticClass: "drop-content ml-3 mr-3 mt-1" },
         [
+          _vm.unreadNotifications.length > 0
+            ? _c(
+                "button",
+                {
+                  staticClass: "btn btn-danger",
+                  on: { click: _vm.markNotificationsAsRead }
+                },
+                [_vm._v("Dismiss Notifications")]
+              )
+            : _vm._e(),
+          _vm._v(" "),
           _vm._l(_vm.unreadNotifications, function(unread) {
             return _c("notification", {
               key: unread,
@@ -43753,7 +43774,11 @@ var render = function() {
             })
           }),
           _vm._v(" "),
-          _c("hr")
+          _vm.unreadNotifications.length > 0 ? _c("hr") : _vm._e(),
+          _vm._v(" "),
+          _vm.unreadNotifications.length == 0
+            ? _c("p", [_vm._v("No Notifications")])
+            : _vm._e()
         ],
         2
       )
