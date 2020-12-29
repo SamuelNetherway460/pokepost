@@ -24,7 +24,7 @@
 
 </head>
 <body>
-    <div id="app">
+    <div>
         <nav class="navbar navbar-expand-md navbar-dark bg-primary shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ URL::route('posts.index') }}">
@@ -92,7 +92,7 @@
             </div>
         @endif
 
-        <main class="py-4">
+        <main id="app" class="py-4">
             @yield('content')
         </main>
 
