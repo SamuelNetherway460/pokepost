@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\CommentController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,6 +19,14 @@ use Illuminate\Support\Facades\Route;
  */
 Route::get('/', function () {
     return view('welcome');
+});
+
+//TODO - Remove
+/**
+ * Test screen for debugging purposes.
+ */
+Route::get('/test', function () {
+    return view('test');
 });
 
 /**
@@ -110,3 +118,10 @@ Auth::routes();
  * Go to home screen.
  */
 Route::get('/home', 'HomeController@index')->name('home');
+
+/**
+ * Mark notifcations as read.
+ */
+Route::get('markAsRead', function() {
+    Auth::user()->unreadNotifications->markAsRead();
+});

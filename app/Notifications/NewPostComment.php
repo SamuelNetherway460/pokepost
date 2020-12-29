@@ -8,7 +8,7 @@ use Illuminate\Notifications\Messages\BroadcastMessage;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class PostDeleted extends Notification
+class NewPostComment extends Notification
 {
     use Queueable;
 
@@ -62,7 +62,7 @@ class PostDeleted extends Notification
         return [
             'post' => $this->post,
             'user' => $this->user,
-            'type' => PostDeleted::class,
+            'type' => NewPostComment::class,
         ];
     }
 
@@ -77,7 +77,7 @@ class PostDeleted extends Notification
         return new BroadcastMessage ([
             'post' => $this->post,
             'user' => $this->user,
-            'type' => PostDeleted::class,
+            'type' => NewPostComment::class,
         ]);
     }
 

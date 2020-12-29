@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Post;
 use App\Tag;
+use App\Notifications\PostDeleted;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -170,6 +171,7 @@ class PostController extends Controller
     public function destroy(Post $post)
     {
         $username = $post->user->name;
+        $post->user->notify(new PostDeleted($post, Auth::user()));
         $post->delete();
 
         return redirect()->route('posts.index')->with('message', $username."'".'s post was deleted!');

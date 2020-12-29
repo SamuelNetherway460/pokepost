@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Post;
 use App\Comment;
+use App\Notifications\CommentDeleted;
+use App\Notifications\NewPostComment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CommentController extends Controller
 {
@@ -47,6 +50,8 @@ class CommentController extends Controller
         $comment->user_id = $request['user_id'];
         $comment->post_id = $request['post_id'];
         $comment->save();
+
+        $comment->post->user->notify(new NewPostComment($comment->post, $comment->user));
 
         $commentWithUser = $comment->load('user');
         return $commentWithUser;
@@ -100,6 +105,8 @@ class CommentController extends Controller
      */
     public function destroy(Request $request)
     {
+        $comment = Comment::find($request['comment_id']);
+        $comment->user->notify(new CommentDeleted($comment, Auth::user()));
         Comment::findOrFail($request['comment_id'], 'id')->delete();
     }
 }

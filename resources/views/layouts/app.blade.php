@@ -11,6 +11,7 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('/js/notifications.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.0/axios.min.js"></script>
 
@@ -23,7 +24,7 @@
 
 </head>
 <body>
-    <div id="app">
+    <div>
         <nav class="navbar navbar-expand-md navbar-dark bg-primary shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ URL::route('posts.index') }}">
@@ -54,6 +55,9 @@
                                 </li>
                             @endif
                         @else
+                            <div id="notifications">
+                                <notifications :unreads="{{ Auth::user()->unreadNotifications()->get() }}" :userid="{{ Auth::user()->id }}"></notifications>
+                            </div>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
@@ -88,7 +92,7 @@
             </div>
         @endif
 
-        <main class="py-4">
+        <main id="app" class="py-4">
             @yield('content')
         </main>
 

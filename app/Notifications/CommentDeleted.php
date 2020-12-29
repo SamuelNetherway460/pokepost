@@ -8,11 +8,11 @@ use Illuminate\Notifications\Messages\BroadcastMessage;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class PostDeleted extends Notification
+class CommentDeleted extends Notification
 {
     use Queueable;
 
-    public $post;
+    public $comment;
     public $user;
 
     /**
@@ -20,9 +20,9 @@ class PostDeleted extends Notification
      *
      * @return void
      */
-    public function __construct($post, $user)
+    public function __construct($comment, $user)
     {
-        $this->post = $post;
+        $this->comment = $comment;
         $this->user = $user;
     }
 
@@ -60,9 +60,9 @@ class PostDeleted extends Notification
     public function toDatabase($notifiable)
     {
         return [
-            'post' => $this->post,
+            'comment' => $this->comment,
             'user' => $this->user,
-            'type' => PostDeleted::class,
+            'type' => CommentDeleted::class,
         ];
     }
 
@@ -75,9 +75,9 @@ class PostDeleted extends Notification
     public function toBroadcast($notifiable)
     {
         return new BroadcastMessage ([
-            'post' => $this->post,
+            'comment' => $this->comment,
             'user' => $this->user,
-            'type' => PostDeleted::class,
+            'type' => CommentDeleted::class,
         ]);
     }
 
