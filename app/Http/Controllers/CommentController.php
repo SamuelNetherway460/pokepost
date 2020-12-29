@@ -105,7 +105,7 @@ class CommentController extends Controller
      */
     public function destroy(Request $request)
     {
-        $comment = Comment::findOrFail($request['comment_id'], 'id')->get();
+        $comment = Comment::find($request['comment_id']);
         $comment->user->notify(new CommentDeleted($comment, Auth::user()));
         Comment::findOrFail($request['comment_id'], 'id')->delete();
     }
