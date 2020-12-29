@@ -28,5 +28,5 @@ Vue.component('notifications', require('./components/Notifications.vue').default
  */
 
 const notifications = new Vue({
-    el: '#notifications',
+    el: '#notifications'
 });

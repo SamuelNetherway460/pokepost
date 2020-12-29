@@ -171,8 +171,8 @@ class PostController extends Controller
     public function destroy(Post $post)
     {
         $username = $post->user->name;
-        $post->delete();
         $post->user->notify(new PostDeleted($post, Auth::user()));
+        $post->delete();
 
         return redirect()->route('posts.index')->with('message', $username."'".'s post was deleted!');
     }

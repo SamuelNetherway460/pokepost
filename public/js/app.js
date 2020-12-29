@@ -1923,15 +1923,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['unreads', 'userid'],
-  data: function data() {
-    return {
-      unreadNotifications: this.unreads
-    };
-  },
   mounted: function mounted() {
     console.log('Component mounted.');
     console.log(this.userid);
-    console.log(this.unreads);
     Echo["private"]('App.User.' + this.userid).notification(function (notification) {
       console.log(notification);
     });
@@ -43647,39 +43641,38 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("li", { staticClass: "dropdown", attrs: { id: "markasread" } }, [
+    _c(
+      "a",
+      {
+        staticClass: "nav-link dropdown-toggle",
+        attrs: {
+          id: "navbarDropdown",
+          href: "#",
+          role: "button",
+          "data-toggle": "dropdown",
+          "aria-haspopup": "true",
+          "aria-expanded": "false"
+        }
+      },
+      [
+        _vm._v("\n        Notifications "),
+        _c("span", { staticClass: "badge badge-danger" }, [
+          _vm._v(_vm._s(_vm.unreads.length))
+        ])
+      ]
+    ),
+    _vm._v(" "),
+    _vm._m(0)
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("li", { staticClass: "dropdown", attrs: { id: "markasread" } }, [
-      _c(
-        "a",
-        {
-          pre: true,
-          attrs: {
-            id: "navbarDropdown",
-            class: "nav-link dropdown-toggle",
-            href: "#",
-            role: "button",
-            "data-toggle": "dropdown",
-            "aria-haspopup": "true",
-            "aria-expanded": "false"
-          }
-        },
-        [
-          _vm._v("\n        Notifications "),
-          _c("span", { pre: true, attrs: { class: "badge badge-danger" } }, [
-            _vm._v("{{ userid }}")
-          ])
-        ]
-      ),
-      _vm._v(" "),
-      _c("ul", { staticClass: "dropdown-menu notify-drop" }, [
-        _c("div", { staticClass: "drop-content ml-3 mr-3 mt-1" }, [_c("hr")])
-      ])
+    return _c("ul", { staticClass: "dropdown-menu notify-drop" }, [
+      _c("div", { staticClass: "drop-content ml-3 mr-3 mt-1" }, [_c("hr")])
     ])
   }
 ]
