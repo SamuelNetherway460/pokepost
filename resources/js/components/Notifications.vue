@@ -5,6 +5,7 @@
         </a>
         <ul class="dropdown-menu notify-drop">
             <div class="drop-content ml-3 mr-3 mt-1">
+                <notification v-for="unread in unreadNotifications" v-bind:key="unread" :unread="unread"></notification>
                 <hr>
             </div>
         </ul>
@@ -12,8 +13,10 @@
 </template>
 
 <script>
+    import Notification from './Notification.vue';
     export default {
         props:['unreads', 'userid'],
+        components: {Notification},
         data(){
             return {
                 unreadNotifications: this.unreads
@@ -28,8 +31,8 @@
                     console.log(notification);
                     let newUnreadNotifications = {
                         data: {
-                            post:notification.post,
-                            user:notification.user
+                            post: notification.post,
+                            user: notification.user
                         }
                     };
                     this.unreadNotifications.push(newUnreadNotifications);
