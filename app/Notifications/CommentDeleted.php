@@ -62,6 +62,7 @@ class CommentDeleted extends Notification
         return [
             'comment' => $this->comment,
             'user' => $this->user,
+            'type' => CommentDeleted::class,
         ];
     }
 
@@ -76,6 +77,7 @@ class CommentDeleted extends Notification
         return new BroadcastMessage ([
             'comment' => $this->comment,
             'user' => $this->user,
+            'type' => CommentDeleted::class,
         ]);
     }
 

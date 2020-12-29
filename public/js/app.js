@@ -1915,6 +1915,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['unread']
 });
@@ -1972,15 +1974,28 @@ __webpack_require__.r(__webpack_exports__);
     console.log('Component mounted.');
     console.log(this.userid);
     Echo["private"]('App.User.' + this.userid).notification(function (notification) {
-      console.log(notification);
-      var newUnreadNotifications = {
-        data: {
-          post: notification.post,
-          user: notification.user
-        }
-      };
+      if (notification.type != 'App\\Notifications\\CommentDeleted') {
+        var newUnreadNotifications = {
+          data: {
+            post: notification.post,
+            user: notification.user,
+            type: notification.type
+          }
+        };
 
-      _this.unreadNotifications.push(newUnreadNotifications);
+        _this.unreadNotifications.push(newUnreadNotifications);
+      } else {
+        console.log(notification);
+        var _newUnreadNotifications = {
+          data: {
+            user: notification.user,
+            comment: notification.comment,
+            type: notification.type
+          }
+        };
+
+        _this.unreadNotifications.push(_newUnreadNotifications);
+      }
     });
   }
 });
@@ -43697,13 +43712,38 @@ var render = function() {
   return _c("div", { staticClass: "warp" }, [
     _c("hr"),
     _vm._v(" "),
-    _c("p", [
-      _vm._v(
-        _vm._s(_vm.unread.data.user.name) +
-          " deleted your post " +
-          _vm._s(_vm.unread.data.post.title)
-      )
-    ])
+    _vm.unread.data.type == "App\\Notifications\\PostDeleted"
+      ? _c("p", [
+          _vm._v(
+            _vm._s(_vm.unread.data.user.name) +
+              ' deleted your post "' +
+              _vm._s(_vm.unread.data.post.title) +
+              '"'
+          )
+        ])
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.unread.data.type == "App\\Notifications\\CommentDeleted"
+      ? _c("p", [
+          _vm._v(
+            _vm._s(_vm.unread.data.user.name) +
+              ' deleted your comment "' +
+              _vm._s(_vm.unread.data.comment.content) +
+              '"'
+          )
+        ])
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.unread.data.type == "App\\Notifications\\NewPostComment"
+      ? _c("p", [
+          _vm._v(
+            _vm._s(_vm.unread.data.user.name) +
+              ' commented on your post "' +
+              _vm._s(_vm.unread.data.post.title) +
+              '"'
+          )
+        ])
+      : _vm._e()
   ])
 }
 var staticRenderFns = []

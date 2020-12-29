@@ -51,7 +51,7 @@ class CommentController extends Controller
         $comment->post_id = $request['post_id'];
         $comment->save();
 
-        $comment->post->user->notify(new NewPostComment($comment, $comment->user));
+        $comment->post->user->notify(new NewPostComment($comment->post, $comment->user));
 
         $commentWithUser = $comment->load('user');
         return $commentWithUser;

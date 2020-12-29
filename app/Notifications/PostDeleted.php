@@ -62,6 +62,7 @@ class PostDeleted extends Notification
         return [
             'post' => $this->post,
             'user' => $this->user,
+            'type' => PostDeleted::class,
         ];
     }
 
@@ -76,6 +77,7 @@ class PostDeleted extends Notification
         return new BroadcastMessage ([
             'post' => $this->post,
             'user' => $this->user,
+            'type' => PostDeleted::class,
         ]);
     }
 

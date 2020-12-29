@@ -12,7 +12,7 @@ class NewPostComment extends Notification
 {
     use Queueable;
 
-    public $comment;
+    public $post;
     public $user;
 
     /**
@@ -20,9 +20,9 @@ class NewPostComment extends Notification
      *
      * @return void
      */
-    public function __construct($comment, $user)
+    public function __construct($post, $user)
     {
-        $this->comment = $comment;
+        $this->post = $post;
         $this->user = $user;
     }
 
@@ -60,8 +60,9 @@ class NewPostComment extends Notification
     public function toDatabase($notifiable)
     {
         return [
-            'comment' => $this->comment,
+            'post' => $this->post,
             'user' => $this->user,
+            'type' => NewPostComment::class,
         ];
     }
 
@@ -74,8 +75,9 @@ class NewPostComment extends Notification
     public function toBroadcast($notifiable)
     {
         return new BroadcastMessage ([
-            'comment' => $this->comment,
+            'post' => $this->post,
             'user' => $this->user,
+            'type' => NewPostComment::class,
         ]);
     }
 

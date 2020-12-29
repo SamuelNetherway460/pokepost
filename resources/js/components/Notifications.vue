@@ -38,14 +38,26 @@
 
             Echo.private('App.User.' + this.userid)
                 .notification((notification) => {
-                    console.log(notification);
-                    let newUnreadNotifications = {
-                        data: {
-                            post: notification.post,
-                            user: notification.user
-                        }
-                    };
-                    this.unreadNotifications.push(newUnreadNotifications);
+                    if (notification.type != 'App\\Notifications\\CommentDeleted') {
+                        let newUnreadNotifications = {
+                            data: {
+                                post: notification.post,
+                                user: notification.user,
+                                type: notification.type
+                            }
+                        };
+                        this.unreadNotifications.push(newUnreadNotifications);
+                    } else {
+                        console.log(notification);
+                        let newUnreadNotifications = {
+                            data: {
+                                user: notification.user,
+                                comment: notification.comment,
+                                type: notification.type
+                            }
+                        };
+                        this.unreadNotifications.push(newUnreadNotifications);
+                    }
                 });
         }
     }
