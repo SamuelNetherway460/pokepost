@@ -1923,11 +1923,26 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['unreads', 'userid'],
+  data: function data() {
+    return {
+      unreadNotifications: this.unreads
+    };
+  },
   mounted: function mounted() {
+    var _this = this;
+
     console.log('Component mounted.');
     console.log(this.userid);
     Echo["private"]('App.User.' + this.userid).notification(function (notification) {
       console.log(notification);
+      var newUnreadNotifications = {
+        data: {
+          post: notification.post,
+          user: notification.user
+        }
+      };
+
+      _this.unreadNotifications.push(newUnreadNotifications);
     });
   }
 });
@@ -43658,7 +43673,7 @@ var render = function() {
       [
         _vm._v("\n        Notifications "),
         _c("span", { staticClass: "badge badge-danger" }, [
-          _vm._v(_vm._s(_vm.unreads.length))
+          _vm._v(_vm._s(_vm.unreadNotifications.length))
         ])
       ]
     ),
