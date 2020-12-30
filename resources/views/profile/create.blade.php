@@ -37,53 +37,15 @@
                     <label for="phoneNumber" class="form-label">Phone Number</label>
                     <input name="phoneNumber" class="form-control" id="phoneNumber" placeholder="Phone Number" required="true" value="{{ old('phoneNumber') }}">
                 </div>
-                <div class="col-md-12 mt-3 input-group">
+                <div class="col-md-12 mt-3">
                     <label for="file" class="form-label">Profile Image</label>
                     <input name="file" type="file" class="form-control" id="file" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
-                    <button class="btn btn-primary" type="button" id="inputGroupFileAddon04">Upload</button>
                 </div>
-            </div>
-        </div>
-        <div class="my-3 p-3 bg-white rounded shadow-sm">
-            <div class="d-flex justify-content-between border-bottom mb-3">
-                <h2 class="pb-2 mb-0">Choose a Favorite Pokemon</h2>
-            </div>
-            <div class="card-deck mt-3 text-center">
-                <div class="card shadow-sm">
-                    <div class="card-header">
-                        <h4 class="my-0 font-weight-normal">Eevee</h4>
-                    </div>
-                    <div class="card-body">
-                        <img src="{{ route('profile.pokemonImage', 'eevee.png') }}" width="150" height="150">
-                    </div>
+                <div class="col-md-12 mt-3">
+                    <label for="favoritePokemon" class="form-label">Favorite Pokemon</label>
+                    <input name="favoritePokemon" class="form-control" id="favoritePokemon" placeholder="Favorite Pokemon" required="true" value="{{ old('favoritePokemon') }}">
                 </div>
-                <div class="card shadow-sm">
-                    <div class="card-header">
-                        <h4 class="my-0 font-weight-normal">Charmander</h4>
-                    </div>
-                    <div class="card-body">
-                        <img src="{{ route('profile.pokemonImage', 'charmander.png') }}" width="150" height="150">
-                    </div>
-                </div>
-                <div class="card shadow-sm">
-                    <div class="card-header">
-                        <h4 class="my-0 font-weight-normal">Larvitar</h4>
-                    </div>
-                    <div class="card-body">
-                        <img src="{{ route('profile.pokemonImage', 'larvitar.png') }}" width="150" height="150">
-                    </div>
-                </div>
-                <div class="card shadow-sm">
-                    <div class="card-header">
-                        <h4 class="my-0 font-weight-normal">Pikachu</h4>
-                    </div>
-                    <div class="card-body">
-                        <img src="{{ route('profile.pokemonImage', 'pikachu.png') }}" width="150" height="150">
-                    </div>
-                </div>
-            </div>
-            <div class="pt-3">
-                <input class="btn btn-primary" type="submit" value="Create">
+                <input class="btn btn-success btn-block mt-3 ml-3 mr-3" type="submit" value="Create">
             </div>
         </div>
     </form>

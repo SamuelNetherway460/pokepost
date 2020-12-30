@@ -104,6 +104,7 @@ class ProfileController extends Controller
             'firstname' => 'required|max:30|string',
             'lastname' => 'required|max:30|string',
             'phoneNumber' => 'numeric',
+            'favoritePokemon' => 'required|string',
         ]);
 
         $profile = new Profile;
@@ -112,7 +113,7 @@ class ProfileController extends Controller
         $profile->firstname = $validatedData['firstname'];
         $profile->lastname = $validatedData['lastname'];
         $profile->phone_number = $validatedData['phoneNumber'];
-        $profile->favorite_pokemon = "charmander";
+        $profile->favorite_pokemon = $validatedData['favoritePokemon'];
 
         if($request->hasFile('file')) {
             // Only allow jpeg, jpg, bmp and png
