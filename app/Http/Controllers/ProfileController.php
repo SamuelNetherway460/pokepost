@@ -23,7 +23,7 @@ class ProfileController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(PokemonGateway $pokemonGateway)
+    public function index()
     {
         $numPosts = $this->numPosts(Auth::user());
         $numComments = $this->numComments(Auth::user());

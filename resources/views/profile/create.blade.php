@@ -27,23 +27,48 @@
                 </div>
                 <div class="col-md-6 mt-1">
                     <label for="firstname" class="form-label">First Name</label>
-                    <input name="firstname" type="text" class="form-control" id="firstname" placeholder="First name" required="true" value="{{ old('firstname') }}">
+                    <input name="firstname" type="text" class="form-control @error('firstname') is-invalid @enderror" id="firstname" placeholder="First name" required="true" value="{{ old('firstname') }}">
+                    @error('firstname')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
                 </div>
                 <div class="col-md-6 mt-1">
                     <label for="lastname" class="form-label">Last Name</label>
-                    <input name="lastname" type="text" class="form-control" id="lastname" placeholder="Last name" required="true" value="{{ old('lastname') }}">
+                    <input name="lastname" type="text" class="form-control @error('lastname') is-invalid @enderror" id="lastname" placeholder="Last name" required="true" value="{{ old('lastname') }}">
+                    @error('lastname')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
                 </div>
                 <div class="col-md-12 mt-3">
                     <label for="phoneNumber" class="form-label">Phone Number</label>
-                    <input name="phoneNumber" class="form-control" id="phoneNumber" placeholder="Phone Number" required="true" value="{{ old('phoneNumber') }}">
+                    <input name="phoneNumber" class="form-control @error('phoneNumber') is-invalid @enderror" id="phoneNumber" placeholder="Phone Number" required="true" value="{{ old('phoneNumber') }}">
+                    @error('phoneNumber')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
                 </div>
                 <div class="col-md-12 mt-3">
                     <label for="file" class="form-label">Profile Image</label>
-                    <input name="file" type="file" class="form-control" id="file" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+                    <input name="file" type="file" class="form-control @error('file') is-invalid @enderror" id="file" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+                    @error('file')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
                 </div>
                 <div class="col-md-12 mt-3">
                     <label for="favoritePokemon" class="form-label">Favorite Pokemon</label>
-                    <input name="favoritePokemon" class="form-control" id="favoritePokemon" placeholder="Favorite Pokemon" required="true" value="{{ old('favoritePokemon') }}">
+                    <input name="favoritePokemon" class="form-control @error('favoritePokemon') is-invalid @enderror" id="favoritePokemon" placeholder="Favorite Pokemon" required="true" value="{{ old('favoritePokemon') }}">
+                    @error('favoritePokemon')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
                 </div>
                 <input class="btn btn-success btn-block mt-3 ml-3 mr-3" type="submit" value="Create">
             </div>
