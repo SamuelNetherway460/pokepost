@@ -119,7 +119,9 @@
                 </div>
                 @foreach ($posts as $post)
                 <div class="d-flex text-muted pt-3">
-                    <img class="me-3 p-2" src="{{ route('image.getProfileImage', $post->user->profile->profile_image_name) }}" alt width="45" height="45">
+                    @if ($post->user->profile->profile_image_name != null)
+                        <img class="me-3 p-2" src="{{ route('image.getProfileImage', $post->user->profile->profile_image_name) }}" alt width="45" height="45">
+                    @endif
                     <div class="pb-3 mb-0 small lh-sm border-bottom w-100">
                         <div class="d-flex justify-content-between">
                             <p>

@@ -9,7 +9,9 @@
             <div class="d-flex justify-content-between border-bottom">
                 <h1 class="pb-2 mb-0">Recent Posts</h1>
                 @if (session('message'))
-                    <h3 class="text-success">{{ session('message') }}</h3>
+                    <div class="alert alert-success" role="alert">
+                        <strong>Success!</strong> {{ session('message') }}
+                    </div>
                 @endif
                 <div class="p-1">
                     <a href="{{ URL::route('posts.create') }}" class="btn btn-primary">Create Post</a>
@@ -17,7 +19,9 @@
             </div>
             @foreach ($posts as $post)
                 <div class="d-flex text-muted pt-3">
-                    <img class="me-3 p-2" src="{{ route('image.getProfileImage', $post->user->profile->profile_image_name) }}" width="45" height="45">
+                    @if ($post->user->profile->profile_image_name != null)
+                        <img class="me-3 p-2" src="{{ route('image.getProfileImage', $post->user->profile->profile_image_name) }}" width="45" height="45">
+                    @endif
                     <div class="pb-3 mb-0 small lh-sm border-bottom w-100">
                         <div class="d-flex justify-content-between">
                             <p>
