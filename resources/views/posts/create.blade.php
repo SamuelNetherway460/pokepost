@@ -21,7 +21,6 @@
             </div>
             <div class="input-group mb-3">
                 <input name="file" type="file" class="form-control @error('file') is-invalid @enderror" id="chooseFile" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
-                <button class="btn btn-primary" type="button" id="inputGroupFileAddon04">Button</button>
                 @error('file')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
