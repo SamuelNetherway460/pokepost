@@ -41,13 +41,14 @@
                 <h2 class="pb-2 mb-0">Tags</h2>
                 <h4>Enter tags using the # key followed by the tag i.e., #PokemonGo #Event #News.
             </div>
-        <div class="form-group mb-3">
-            <textarea name="tags" class="form-control @error('tags') is-invalid @enderror" aria-label="With textarea" aria-describedby="inputGroup-sizing-lg" placeholder="Tags">{{ old('tags') }}</textarea>
-            @error('tags')
-                <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
-            @enderror
+            <div class="form-group mb-3">
+                <textarea name="tags" class="form-control @error('tags') is-invalid @enderror" aria-label="With textarea" aria-describedby="inputGroup-sizing-lg" placeholder="Tags">{{ old('tags') }}</textarea>
+                @error('tags')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+            </div>
         </div>
         <input class="btn btn-primary" type="submit" value="Submit Post">
         <a href="{{ route('posts.index') }}">Cancel</a>

@@ -127,7 +127,7 @@ class PostController extends Controller
     public function edit($id)
     {
         $post = Post::find($id);
-        return view('posts.edit', ['post' => $post]);
+        return view('posts.edit', ['post' => $post, 'tags' => $post->tags]);
     }
 
     /**
@@ -156,7 +156,35 @@ class PostController extends Controller
             $request->file->store('post_images', 'public');
             $post->post_image_name = $request->file->hashName();
         }
+
+        // Remove existing tags if there are new replacement tags
+        if ($request['tags'] != null) {
+            $post->tags()->detach();
+        }
         $post->save();
+
+        $rawTagsString = $request['tags'];
+        $rawTagsNoSpaces = str_replace(' ', '', $rawTagsString);
+        $tagArray = explode('#', $rawTagsNoSpaces);
+
+        // Add new tags to the database.
+        // Add tags to posts.
+        foreach($tagArray as $tag) {
+            if($tag != '')
+            {
+                if (!$this->tagAlreadyExists($tag))
+                {
+                    $newtag = new Tag(['name' => $tag]);
+                    $newtag->save();
+                    $post->tags()->attach($newtag);
+                }
+                else
+                {
+                    $existingTag = Tag::where('tags.name', $tag)->get();
+                    $post->tags()->attach($existingTag);
+                }
+            }
+        }
 
         session()->flash('message', 'Updated!');
         return redirect()->route('posts.show', $post);
