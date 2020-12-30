@@ -81,17 +81,6 @@
             </div>
         </nav>
 
-        @if ($errors->any())
-            <div class="d-flex justify-content-center">
-                Errors:
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
-
         <main id="app" class="py-4">
             @yield('content')
         </main>
