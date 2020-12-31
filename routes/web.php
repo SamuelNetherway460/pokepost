@@ -49,7 +49,7 @@ Route::get('posts/edit/{post}', 'PostController@edit')->name('posts.edit')->midd
 /**
  * Update a particular post.
  */
-Route::post('posts/update/{id}', 'PostController@update')->name('posts.update')->middleware(['auth', 'profile', 'admin']);
+Route::post('posts/update/{post}', 'PostController@update')->name('posts.update')->middleware(['auth', 'profile', 'admin']);
 
 /**
  * Gets the post image for a post.

@@ -4,7 +4,7 @@
 
 @section('content')
     <main class="container">
-        <form method="POST" action="{{ route('posts.update', $post->id) }}" enctype="multipart/form-data">
+        <form method="POST" action="{{ route('posts.update', $post) }}" enctype="multipart/form-data">
             @csrf
             <div class="my-3 p-3 bg-white rounded shadow-sm">
                 <div class="d-flex justify-content-between border-bottom mb-3">

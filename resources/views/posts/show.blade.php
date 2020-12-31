@@ -21,7 +21,7 @@
                         @method('DELETE')
                         <button class="btn btn-primary mr-1" type="submit">Delete</button>
                     </form>
-                    <a href="{{ URL::route('posts.edit', $post->id) }}" class="btn btn-primary ml-1">Edit</a>
+                    <a href="{{ URL::route('posts.edit', $post) }}" class="btn btn-primary ml-1">Edit</a>
                 </div>
                 @elseif(Auth::user()->profile->profileable_type == App\Admin::class)
                 <div class="btn-group" role="group">
@@ -30,7 +30,7 @@
                         @method('DELETE')
                         <button class="btn btn-primary mr-1" type="submit">Delete</button>
                     </form>
-                    <a href="{{ URL::route('posts.edit', $post->id) }}" class="btn btn-primary ml-1">Edit</a>
+                    <a href="{{ URL::route('posts.edit', $post) }}" class="btn btn-primary ml-1">Edit</a>
                 </div>
                 @elseif(Auth::user()->profile->profileable_type == App\Moderator::class)
                     <form method="POST" action="{{ route('posts.destroy', $post)}}">
@@ -39,8 +39,6 @@
                         <button class="btn btn-primary" type="submit">Delete</button>
                     </form>
                 @endif
-
-                <!--Admins and the post owner can edit the post-->
             </div>
         </div>
         <div class="d-flex text-muted pt-3">
