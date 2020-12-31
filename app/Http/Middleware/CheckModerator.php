@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Illuminate\Support\Facades\Auth;
 
 class CheckModerator
 {
@@ -15,6 +16,10 @@ class CheckModerator
      */
     public function handle($request, Closure $next)
     {
-        return $next($request);
+        if (Auth::user()->profile->profileable_type == App\Moderator::class) {
+            return $next($request);
+        } else {
+            return redirect('/posts')->with('warning', 'You cannot perform this action! You are not a moderator.');
+        }
     }
 }
