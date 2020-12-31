@@ -82,6 +82,11 @@
         </nav>
 
         <main id="app" class="py-4">
+            @if (session('warning'))
+                <div class="alert alert-warning" role="alert">
+                    <strong>Warning!</strong> {{ session('warning') }}
+                </div>
+            @endif
             @yield('content')
         </main>
 

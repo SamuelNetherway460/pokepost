@@ -109,7 +109,7 @@ Auth::routes();
 /**
  * Go to home screen.
  */
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/posts', 'PostController@index')->name('home');
 
 /**
  * Mark notifcations as read.
