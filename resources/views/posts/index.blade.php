@@ -8,11 +8,6 @@
         <div class="my-3 p-3 bg-white rounded shadow-sm">
             <div class="d-flex justify-content-between border-bottom">
                 <h1 class="pb-2 mb-0">Recent Posts</h1>
-                @if (session('message'))
-                    <div class="alert alert-success" role="alert">
-                        <strong>Success!</strong> {{ session('message') }}
-                    </div>
-                @endif
                 <div class="p-1">
                     <a href="{{ URL::route('posts.create') }}" class="btn btn-primary">Create Post</a>
                 </div>
