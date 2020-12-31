@@ -44,12 +44,12 @@ Route::get('posts/{post}', 'PostController@show')->name('posts.show')->middlewar
 /**
  * Edit a particular post.
  */
-Route::get('posts/edit/{post}', 'PostController@edit')->name('posts.edit')->middleware(['auth', 'profile']);
+Route::get('posts/edit/{post}', 'PostController@edit')->name('posts.edit')->middleware(['auth', 'profile', 'admin']);
 
 /**
  * Update a particular post.
  */
-Route::post('posts/update/{id}', 'PostController@update')->name('posts.update')->middleware(['auth', 'profile']);
+Route::post('posts/update/{id}', 'PostController@update')->name('posts.update')->middleware(['auth', 'profile', 'admin']);
 
 /**
  * Gets the post image for a post.
@@ -74,12 +74,12 @@ Route::get('cover/image/{coverfilename}', 'PostController@getCoverImage')->name(
 /**
  * Delete a post.
  */
-Route::delete('posts/{post}', 'PostController@destroy')->name('posts.destroy')->middleware(['auth', 'profile']);
+Route::delete('posts/{post}', 'PostController@destroy')->name('posts.destroy')->middleware(['auth', 'profile', 'moderator', 'admin']);
 
 /**
  * Deletes a comment.
  */
-Route::post('comments', 'CommentController@destroy')->name('comments.destroy')->middleware(['auth', 'profile']);
+Route::post('comments', 'CommentController@destroy')->name('comments.destroy')->middleware(['auth', 'profile', 'moderator', 'admin']);
 
 /**
  * Display a specified profile.

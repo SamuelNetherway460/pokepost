@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use App\Admin;
 use Illuminate\Support\Facades\Auth;
 
 class CheckAdmin
@@ -16,7 +17,7 @@ class CheckAdmin
      */
     public function handle($request, Closure $next)
     {
-        if (Auth::user()->profile->profileable_type == App\Admin::class) {
+        if (Auth::user()->profile->profileable_type == Admin::class) {
             return $next($request);
         } else {
             return redirect('/posts')->with('warning', 'You cannot perform this action! You are not an admin.');
