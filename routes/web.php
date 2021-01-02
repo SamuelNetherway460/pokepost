@@ -79,12 +79,12 @@ Route::get('cover/image/{coverfilename}', 'PostController@getCoverImage')->name(
 /**
  * Delete a post.
  */
-Route::delete('posts/{post}', 'PostController@destroy')->name('posts.destroy')->middleware(['auth', 'profile', 'moderator', 'admin']);
+Route::delete('posts/{post}', 'PostController@destroy')->name('posts.destroy')->middleware(['auth', 'profile', 'moderator']);
 
 /**
  * Deletes a comment.
  */
-Route::post('comments', 'CommentController@destroy')->name('comments.destroy')->middleware(['auth', 'profile', 'moderator', 'admin']);
+Route::post('comments', 'CommentController@destroy')->name('comments.destroy')->middleware(['auth', 'profile', 'moderator']);
 
 /**
  * Display a specified profile.

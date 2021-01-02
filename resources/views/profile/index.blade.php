@@ -3,10 +3,9 @@
 @section('title', 'My Profile')
 
 @section('content')
-@php $user = Auth::user() @endphp
-@php $profile = Auth::user()->profile @endphp
+    @php $user = Auth::user() @endphp
+    @php $profile = Auth::user()->profile @endphp
     <main class="container">
-
             <div class="my-3 p-3 rounded shadow-sm" style="background-color: #fffdd4">
                 @if ($profile->cover_image_name != null)
                     <img src="{{ route('image.getCoverImage', $profile->cover_image_name) }}" alt="Profile Cover Image" title="Profile Cover Image" style="width:100%">
@@ -127,19 +126,20 @@
             @if(Auth::user()->profile->profileable_type == App\Admin::class)
                 <div class="my-3 p-3 rounded shadow-sm" style="background-color: #fffdd4">
                     <div class="border-bottom mb-3">
-                        <h2 class="pb-2 mb-0">Admin Actions</h2>
+                        <h2 class="pb-2 mb-0">Admin Panel</h2>
                     </div>
                     <div class="mt-3">
-
+                        <h5>Posts Deleted: {{ Auth::user()->profile->profileable->num_posts_deleted }}</h5>
+                        <h5>Posts Edited: {{ Auth::user()->profile->profileable->num_posts_edited }}</h5>
                     </div>
                 </div>
             @elseif(Auth::user()->profile->profileable_type == App\Moderator::class)
                 <div class="my-3 p-3 rounded shadow-sm" style="background-color: #fffdd4">
                     <div class="d-flex justify-content-between border-bottom">
-                        <h2 class="pb-2 mb-0">Moderator Actions</h2>
+                        <h2 class="pb-2 mb-0">Moderator Panel</h2>
                     </div>
                     <div class="mt-3">
-
+                        <h5>Posts Deleted: {{ Auth::user()->profile->profileable->num_posts_deleted }}</h5>
                     </div>
                 </div>
             @endif

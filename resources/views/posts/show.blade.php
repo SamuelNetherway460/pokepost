@@ -45,7 +45,7 @@
             <div>
                 <h4 class="d-block">{{ $post->title }}</h4>
                 @if($post->post_image_name != null)
-                    <div class="text-center">
+                    <div class="text-center mt-3 mb-3">
                         <img src="{{ route('image.getPostImage',$post->post_image_name) }}" alt="Post Image" title="Post Image">
                     </div>
                 @endif
