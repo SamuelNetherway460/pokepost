@@ -23,9 +23,9 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
 </head>
-<body>
+<body style="background-color: #FFCB05">
     <div>
-        <nav class="navbar navbar-expand-md navbar-dark bg-primary shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-dark shadow-sm" style="background-color:#003A70">
             <div class="container">
                 <a class="navbar-brand" href="{{ URL::route('posts.index') }}">
                     {{ config('app.name', 'PokePost') }}

@@ -7,7 +7,7 @@
 <main class="container">
     <form method="POST" action="{{ route('posts.store') }}" enctype="multipart/form-data">
         @csrf
-        <div class="my-3 p-3 bg-white rounded shadow-sm">
+        <div class="my-3 p-3 rounded shadow-sm" style="background-color: #fffdd4">
             <div class="d-flex justify-content-between border-bottom mb-3">
                 <h2 class="pb-2 mb-0">New Post</h2>
             </div>
@@ -36,7 +36,7 @@
                 @enderror
             </div>
         </div>
-        <div class="my-3 p-3 bg-white rounded shadow-sm">
+        <div class="my-3 p-3 rounded shadow-sm" style="background-color: #fffdd4">
             <div class="border-bottom mb-3">
                 <h2 class="pb-2 mb-0">Tags</h2>
                 <h4>Enter tags using the # key followed by the tag i.e., #PokemonGo #Event #News.
@@ -51,7 +51,7 @@
             </div>
         </div>
         <input class="btn btn-primary" type="submit" value="Submit Post">
-        <a href="{{ route('posts.index') }}">Cancel</a>
+        <a href="{{ route('posts.index') }}" class="ml-3" style="color: #ff0000">Cancel</a>
     </form>
 </main>
 @endsection

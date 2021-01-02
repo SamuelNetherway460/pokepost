@@ -7,7 +7,7 @@
 <main class="container">
     <form method="POST" action="{{ route('profiles.store') }}" enctype="multipart/form-data">
         @csrf
-        <div class="my-3 p-3 bg-white rounded shadow-sm">
+        <div class="my-3 p-3 rounded shadow-sm" style="background-color: #fffdd4">
             <div class="d-flex justify-content-between border-bottom mb-3">
                 <h2 class="pb-2 mb-0">Create a Profile</h2>
             </div>

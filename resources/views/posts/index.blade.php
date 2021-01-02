@@ -5,7 +5,7 @@
 @section('content')
 
     <main class="container">
-        <div class="my-3 p-3 bg-white rounded shadow-sm">
+        <div class="my-3 p-3 rounded shadow-sm" style="background-color: #fffdd4">
             <div class="d-flex justify-content-between border-bottom">
                 <h1 class="pb-2 mb-0">Recent Posts</h1>
                 <div class="p-1">

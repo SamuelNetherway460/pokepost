@@ -5,7 +5,7 @@
 @section('content')
 
 <main class="container">
-    <div class="my-3 p-3 bg-white rounded shadow-sm">
+    <div class="my-3 p-3 rounded shadow-sm" style="background-color: #fffdd4">
         <div class="d-flex justify-content-between border-bottom">
             @if($post->updated_at > $post->created_at)
                 <h3 class="pb-2 mb-0 text-info">{{ $post->user->name }} &middot {{ $post->created_at->diffForHumans() }} &middot updated {{ $post->updated_at->diffForHumans() }}</h3>
@@ -56,13 +56,13 @@
 </main>
 
 <main class="container">
-    <div class="my-3 p-3 bg-white rounded shadow-sm">
+    <div class="my-3 p-3 rounded shadow-sm" style="background-color: #fffdd4">
         <div class="d-flex border-bottom">
             <h2 class="pb-2 mb-0">Tags</h2>
         </div>
         <div class="row ml-1 mr-1 mt-2">
             @foreach ($tags as $tag)
-                <div class="col-sm-1 m-1 p-0 btn btn-info">
+                <div class="col-sm-1 m-1 p-0 btn btn-info" style="color: white">
                     {{ $tag->name }}
                 </div>
             @endforeach
@@ -71,7 +71,7 @@
 </main>
 
 <main class="container">
-    <div class="my-3 p-3 bg-white rounded shadow-sm">
+    <div class="my-3 p-3 rounded shadow-sm" style="background-color: #fffdd4">
         <div class="d-flex border-bottom">
             <h2 class="pb-2 mb-0">Comments</h2>
         </div>
@@ -83,7 +83,7 @@
         </div>
 
         <div v-for="comment in comments" class="d-flex text-muted pt-3">
-            <div class="pb-3 mb-0 small lh-sm border-bottom w-100">
+            <div class="pb-3 mb-0 small lh-sm border-bottom w-100" style="background-color: #fffdd4">
                 <div id="app" class="d-flex justify-content-between">
                     <p>
                         <strong class="text-dark">@{{ comment.user.name }}</strong>
