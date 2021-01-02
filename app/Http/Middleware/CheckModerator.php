@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use App\Admin;
 use App\Moderator;
+use App\Comment;
 use Illuminate\Support\Facades\Auth;
 
 class CheckModerator
@@ -30,6 +31,13 @@ class CheckModerator
         // Allow next if the user owns the post
         } else if ($postUser != null) {
             if ($postUser->id == Auth::user()->id) {
+                return $next($request);
+            } else {
+                return redirect('/posts')->with('warning', 'You cannot perform this action! You are not a moderator.');
+            }
+        } else if ($request['comment_id'] != null) {
+            $comment = Comment::find($request['comment_id']);
+            if ($comment->user->id == Auth::user()->id) {
                 return $next($request);
             } else {
                 return redirect('/posts')->with('warning', 'You cannot perform this action! You are not a moderator.');

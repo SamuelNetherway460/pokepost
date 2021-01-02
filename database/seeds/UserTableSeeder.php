@@ -30,6 +30,12 @@ class UserTableSeeder extends Seeder
         $user3->password = "Testing123";
         $user3->save();
 
+        $user4 = new User;
+        $user4->name = "Basic";
+        $user4->email = "basic@gmail.com";
+        $user4->password = "Testing123";
+        $user4->save();
+
         factory(App\User::class, 200)->create()->each(function ($user) {
             $user->profile()->save(factory(App\Profile::class)->make());
         });

@@ -59,5 +59,21 @@ class ProfileTableSeeder extends Seeder
         $profile3->phone_number = "07704649888";
         $profile3->favorite_pokemon = "charmander";
         $profile3->save();
+
+        $profileableType4 = App\Basic::class;
+        $profileable4 = factory($profileableType4)->create();
+
+        $profile4 = new Profile;
+        $profile4->user_id = 4;
+        $profile4->profileable_type = $profileableType4;
+        $profile4->profileable_id = $profileable4->id;
+        $profile4->title = "Mr";
+        $profile4->firstname = "Basic";
+        $profile4->lastname = "Account";
+        $profile4->profile_image_name = "profile_535.png";
+        $profile4->cover_image_name = "cover_8.png";
+        $profile4->phone_number = "07704649888";
+        $profile4->favorite_pokemon = "charmander";
+        $profile4->save();
     }
 }
