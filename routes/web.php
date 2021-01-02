@@ -59,7 +59,12 @@ Route::get('post/image/{postfilename}', 'PostController@getPostImage')->name('im
 /**
  * Return a pokemon image.
  */
-Route::get('pokemon/{filename}', 'ProfileController@getPokemonImage')->name('profile.pokemonImage')->middleware(['auth']);
+Route::get('pokemon/{filename}', 'ProfileController@getPokemonImage')->name('profile.pokemonImage');
+
+/**
+ * Return a general application image.
+ */
+Route::get('general/{filename}', 'Controller@getAssetImage')->name('controller.assetImage');
 
 /**
  * Gets the profile image of a profile.

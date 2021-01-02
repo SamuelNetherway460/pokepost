@@ -64,11 +64,12 @@
     <body>
         <div class="flex-center position-ref full-height">
             <div class="content">
+                <img src="{{ route('controller.assetImage', 'pokemon_logo.png') }}" alt="" title="" style="width:50%">
                 <div class="title m-b-md">
                     PokePost
                 </div>
                 <div class="description m-b-md">
-                    Welcome to PokePost! PokePost is a place to share all of your amazing Pokemon encounters.
+                    Welcome to PokePost! A place to share all of your amazing Pokemon encounters.
                 </div>
                 @if (Route::has('login'))
                     <div class="links">
