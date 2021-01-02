@@ -69,7 +69,7 @@
                     PokePost
                 </div>
                 <div class="description m-b-md">
-                    Welcome to PokePost! A place to share all of your amazing Pokemon encounters.
+                    Welcome to PokePost! A place to share all your amazing Pokemon encounters.
                 </div>
                 @if (Route::has('login'))
                     <div class="links">

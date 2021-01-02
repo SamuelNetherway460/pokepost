@@ -87,7 +87,6 @@
                 <div id="app" class="d-flex justify-content-between">
                     <p>
                         <strong class="text-dark">@{{ comment.user.name }}</strong>
-                        <strong>&middot @{{ comment.updated_at }}</strong>
                     </p>
                     <p>
                         <!--Admins, moderators and the comment owner can delete the comment-->
