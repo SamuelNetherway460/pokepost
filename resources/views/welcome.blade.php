@@ -64,7 +64,7 @@
     <body>
         <div class="flex-center position-ref full-height">
             <div class="content">
-                <img src="{{ route('controller.assetImage', 'pokemon_logo.png') }}" alt="" title="" style="width:50%">
+                <img src="{{ route('controller.assetImage', 'pokemon_logo.png') }}" alt="Pokemon Logo" title="" style="width:50%">
                 <div class="title m-b-md">
                     PokePost
                 </div>
